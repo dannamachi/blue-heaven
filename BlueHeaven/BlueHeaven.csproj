@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44341629-5E10-4974-B213-B5FF33456E40}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BlueHeaven</RootNamespace>
+    <AssemblyName>BlueHeaven</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>Windows</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\_components\implementations\Choice\ChoiceComponent.cs" />
+    <Compile Include="src\_components\implementations\Choice\ChoiceProcessor.cs" />
+    <Compile Include="src\_components\implementations\Choice\ChoiceRenderer.cs" />
+    <Compile Include="src\_components\implementations\Choice\ChoiceUpdater.cs" />
+    <Compile Include="src\_components\implementations\GameRouter.cs" />
+    <Compile Include="src\_components\implementations\Navigation\NavigationComponent.cs" />
+    <Compile Include="src\_components\implementations\Navigation\NavigationProcessor.cs" />
+    <Compile Include="src\_components\implementations\Navigation\NavigationRenderer.cs" />
+    <Compile Include="src\_components\implementations\Navigation\NavigationUpdater.cs" />
+    <Compile Include="src\_components\implementations\Personality\PersonalityComponent.cs" />
+    <Compile Include="src\_components\implementations\Personality\PersonalityProcessor.cs" />
+    <Compile Include="src\_components\implementations\Personality\PersonalityRenderer.cs" />
+    <Compile Include="src\_components\implementations\Personality\PersonalityUpdater.cs" />
+    <Compile Include="src\_components\implementations\RootComponent.cs" />
+    <Compile Include="src\_components\implementations\RootProcessor.cs" />
+    <Compile Include="src\_components\implementations\RootRenderer.cs" />
+    <Compile Include="src\_components\implementations\RootUpdater.cs" />
+    <Compile Include="src\_components\implementations\Story\StoryComponent.cs" />
+    <Compile Include="src\_components\implementations\Story\StoryProcessor.cs" />
+    <Compile Include="src\_components\implementations\Story\StoryRenderer.cs" />
+    <Compile Include="src\_components\implementations\Story\StoryUpdater.cs" />
+    <Compile Include="src\_components\implementations\Title\TitleComponent.cs" />
+    <Compile Include="src\_components\implementations\Title\TitleProcessor.cs" />
+    <Compile Include="src\_components\implementations\Title\TitleRenderer.cs" />
+    <Compile Include="src\_components\implementations\Title\TitleUpdater.cs" />
+    <Compile Include="src\_components\interfaces\IActionProcessor.cs" />
+    <Compile Include="src\_components\interfaces\IComponentMaster.cs" />
+    <Compile Include="src\_components\interfaces\IComponentProcessor.cs" />
+    <Compile Include="src\_components\interfaces\IComponentRenderer.cs" />
+    <Compile Include="src\_components\interfaces\IComponentUpdater.cs" />
+    <Compile Include="src\_components\interfaces\IGameComponent.cs" />
+    <Compile Include="src\_components\interfaces\IObjectRenderer.cs" />
+    <Compile Include="src\_components\interfaces\IRoute.cs" />
+    <Compile Include="src\_components\interfaces\IStateUpdater.cs" />
+    <Compile Include="src\_data\implementations\Character.cs" />
+    <Compile Include="src\_data\implementations\Choice\Choice.cs" />
+    <Compile Include="src\_data\implementations\Choice\ChoiceDispenser.cs" />
+    <Compile Include="src\_data\implementations\Choice\ChoiceEffect.cs" />
+    <Compile Include="src\_data\implementations\GameState.cs" />
+    <Compile Include="src\_data\implementations\Sentiment.cs" />
+    <Compile Include="src\_data\implementations\StateBeacon.cs" />
+    <Compile Include="src\_data\implementations\Story\Conversation.cs" />
+    <Compile Include="src\_data\implementations\Story\ConversationCondition.cs" />
+    <Compile Include="src\_data\implementations\Story\ConversationLine.cs" />
+    <Compile Include="src\_data\implementations\Story\PersonalityCondition.cs" />
+    <Compile Include="src\_data\implementations\Story\SentimentCondition.cs" />
+    <Compile Include="src\_data\interfaces\IAffectCharacter.cs" />
+    <Compile Include="src\_data\interfaces\ICharacter.cs" />
+    <Compile Include="src\_data\interfaces\IChoice.cs" />
+    <Compile Include="src\_data\interfaces\IConversation.cs" />
+    <Compile Include="src\_data\interfaces\IConversationLine.cs" />
+    <Compile Include="src\_data\interfaces\IGameState.cs" />
+    <Compile Include="src\_data\interfaces\IHaveChoice.cs" />
+    <Compile Include="src\_data\interfaces\IProvideCondition.cs" />
+    <Compile Include="src\_data\interfaces\ISentiment.cs" />
+    <Compile Include="src\_data\interfaces\IShowState.cs" />
+    <Compile Include="src\_enums\DecisionBuilder.cs" />
+    <Compile Include="src\_enums\GraphicBuilder.cs" />
+    <Compile Include="src\_enums\GraphicDimension.cs" />
+    <Compile Include="src\_enums\Personality.cs" />
+    <Compile Include="src\_enums\StoryBuilder.cs" />
+    <Compile Include="src\_graphic\implementations\GraphicObject.cs" />
+    <Compile Include="src\_graphic\interfaces\IGraphicObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\_components\implementations\Alert\" />
+    <Folder Include="src\_components\implementations\Info\" />
+    <Folder Include="src\_components\implementations\Reload\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

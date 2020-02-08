@@ -1,28 +1,54 @@
 using System.Collections.Generic;
+using BlueHeaven.src.Enums;
 namespace BlueHeaven.src.Data
 {
-    // abstract: container of game data
+    /// <summary>
+    /// Data object for (strictly) game data (abstract)
+    /// </summary>
     public interface IGameState
     {
-        // current choice dispenser
+        /// <summary>
+        /// Get current choice dispenser
+        /// </summary>
         IHaveChoice ChoiceDispenser { get; set; }
-        // bool whether user has indicated next line
+
+        // TO REMOVE: bool whether user has indicated next line
         bool NextLine { get; set; }
-        // current conversation to show
+
+        /// <summary>
+        /// Get current conversation
+        /// </summary>
         IConversation Conversation { get; set; }
-        // find character by name
+
+        // TO FIX: get character by name (string)
         ICharacter GetCharacter(string name);
-        // bool wheather there is (readable) conversation left
+
+        /// <summary>
+        /// Get bool if there is no readable conversation to fetch
+        /// </summary>
         bool Finished { get; set; }
-        // list of finished conversations
+
+        /// <summary>
+        /// Get list of finished conversations
+        /// </summary>
         List<IConversation> FinishedConversations { get; }
-        // bool whether has finished a conversation
-        bool HasConversation(string name);
-        // current character open for editing
+
+        /// <summary>
+        /// Get bool if a conversation is finished (using code)
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        bool HasConversation(ConversationCode code);
+
+        // TO REMOVE: current character open for editing
         ICharacter EditingCharacter { get; }
-        // changing which parameter of personality
+
+        // TO REMOVE: changing which parameter of personality
         int EditingIndex { get; set; }
-        // bool whether editing is allowed
+
+        /// <summary>
+        /// Get bool if editing is allowed at current conversation
+        /// </summary>
         bool Editable { get; set; }
     }
 }

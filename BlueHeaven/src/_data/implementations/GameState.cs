@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using BlueHeaven.src.Enums;
 namespace BlueHeaven.src.Data
 {
-    // data: game data
+    /// <summary>
+    /// Data object for (strictly) game data
+    /// </summary>
     public class GameState : IGameState
     {
         private List<ICharacter> _characters;
@@ -15,17 +18,24 @@ namespace BlueHeaven.src.Data
                                                              // add builder
         }
 
-        // next routed state of the game
+        // TO REMOVE: next routed state of the game
         public int NavigatingTo { get; set; }
-        // current routed state of the game
-        public IShowState StateBeacon { get; set; }
-        // current choice dispenser
+
+        /// <summary>
+        /// Get current choice dispenser
+        /// </summary>
         public IHaveChoice ChoiceDispenser { get; set; }
-        // bool whether user has indicated next line
+
+
+        // TO REMOVE: bool whether user has indicated next line
         public bool NextLine { get; set; }
-        // current conversation to show
+
+        /// <summary>
+        /// Get current conversation
+        /// </summary>
         public IConversation Conversation { get; set; }
-        // find character by name
+
+        // TO FIX: get character by name (string)
         public ICharacter GetCharacter(string name)
         {
             foreach (ICharacter character in _characters)
@@ -34,20 +44,32 @@ namespace BlueHeaven.src.Data
             }
             return null;
         }
-        // bool wheather there is (readable) conversation left
+
+        /// <summary>
+        /// Get bool if there is no readable conversation to fetch
+        /// </summary>
         public bool Finished { get; set; }
-        // list of finished conversations
+
+        /// <summary>
+        /// Get list of finished conversations
+        /// </summary>
         public List<IConversation> FinishedConversations { get => _finishedConversations; }
-        // bool whether has finished a conversation
-        public bool HasConversation(string name)
+
+        /// <summary>
+        /// Get bool if a conversation is finished (using code)
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public bool HasConversation(ConversationCode code)
         {
             foreach (IConversation conversation in _finishedConversations)
             {
-                if (conversation.IsCalled(name)) return true;
+                if (conversation.IsCalled(code)) return true;
             }
             return false;
         }
-        // current character open for editing
+
+        // TO REMOVE: current character open for editing
         public ICharacter EditingCharacter
         {
             get
@@ -59,9 +81,13 @@ namespace BlueHeaven.src.Data
                 return null;
             }
         }
-        // changing which parameter of personality
+
+        // TO REMOVE: changing which parameter of personality
         public int EditingIndex { get; set; }
-        // bool whether editing is allowed
+
+        /// <summary>
+        /// Get bool if editing is allowed at current conversation
+        /// </summary>
         public bool Editable { get; set; }
     }
 

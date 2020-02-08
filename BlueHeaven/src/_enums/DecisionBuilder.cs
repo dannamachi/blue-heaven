@@ -3,22 +3,25 @@ using BlueHeaven.src.Data;
 using BlueHeaven.src.Data.Choice;
 namespace BlueHeaven.src.Enums
 {
-    // enum: choice source
+    /// <summary>
+    /// Code for decision (choice dispenser object)
+    /// </summary>
     public enum ChoiceDispenserCode
     {
+        None,
         SayHelloOrNah
     }
+
+    /// <summary>
+    /// Container of choices
+    /// </summary>
     public static class DecisionBuilder
     {
-        private static Dictionary<ChoiceDispenserCode, IHaveChoice> _decisionDict = new Dictionary<ChoiceDispenserCode, IHaveChoice>();
-        public static IHaveChoice GetChoiceDispenser(ChoiceDispenserCode code)
+        private static List<IHaveChoice> _decisionList = new List<IHaveChoice>
         {
-            if (_decisionDict.ContainsKey(code)) return _decisionDict[code];
-            return null;
-        }
-        public static void DefineDecision()
-        {
-            _decisionDict[ChoiceDispenserCode.SayHelloOrNah] = new ChoiceDispenser(
+            #region Say Hello Or Nah
+            new ChoiceDispenser(
+                ChoiceDispenserCode.SayHelloOrNah,
                 new List<IChoice> {
                 new Choice(
                     "Say Hello",
@@ -26,16 +29,28 @@ namespace BlueHeaven.src.Enums
                         new ChoiceEffect(
                             "Mochi",SentimentEffect.Up,"Player"
                         )
-                    }
-                ),
+                    }),
                 new Choice(
                     "Ignore",
                     new List<IAffectCharacter>{
 
-                    }
-                )
-                }
-            );
+                    })
+                })
+            #endregion
+        };
+
+        /// <summary>
+        /// Get choice dispenser via code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static IHaveChoice GetChoiceDispenser(ChoiceDispenserCode code)
+        {
+            foreach (IHaveChoice decision in _decisionList)
+            {
+                if (decision.IsCalled(code)) return decision;
+            }
+            return null;
         }
     }
 }

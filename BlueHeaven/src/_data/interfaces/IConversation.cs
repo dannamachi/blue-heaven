@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using BlueHeaven.src.Enums;
 namespace BlueHeaven.src.Data
 {
     // abstract: contains data about content of a conversation/scene
@@ -6,6 +8,7 @@ namespace BlueHeaven.src.Data
         string Name { get; }
         bool CanBeRead(IGameState gameState);
         bool IsCalled(string name);
+        bool IsCalled(ConversationCode code);
         bool IsFinished { get; }
         IConversationLine GetConversationLine(IGameState gameState);
         // may contain choice or nah
@@ -15,5 +18,6 @@ namespace BlueHeaven.src.Data
         // get to choose only if HaveChoice
         IHaveChoice GetChoiceDispenser { get; }
         void Advance();
+        void SetCondition(List<IProvideCondition> toGet, List<IProvideCondition> toChoose);
     }
 }

@@ -1,6 +1,8 @@
 namespace BlueHeaven.src.Enums
 {
-    // enum: dimension constants (x,y,w,h)
+    /// <summary>
+    /// Dimention constants for display (x,y,w,h)
+    /// </summary>
     public static class GraphicDimension
     {
         // game window (could write it so everything else depends on game window size)

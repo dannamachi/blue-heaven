@@ -1,23 +1,42 @@
 using System.Collections.Generic;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Data.Story;
+using BlueHeaven.src.Data.Choice;
 namespace BlueHeaven.src.Enums
 {
-    // enum: conversation source
+    /// <summary>
+    /// Code for conversation object
+    /// </summary>
     public enum ConversationCode
     {
         WelcomeToBlueHeaven,
         AnotherGreeting
     }
 
+    /// <summary>
+    /// Container of conversations
+    /// </summary>
     public static class StoryBuilder
     {
-        private static Dictionary<ConversationCode, IConversation> _storyDict = new Dictionary<ConversationCode, IConversation>();
+        /// <summary>
+        /// Get a conversation object from code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns> 
         public static IConversation GetConversation(ConversationCode code)
         {
-            if (_storyDict.ContainsKey(code)) return _storyDict[code];
+            foreach (IConversation convo in _storyList)
+            {
+                if (convo.IsCalled(code)) return convo;
+            }
             return null;
         }
+        
+        /// <summary>
+        /// Get list of conversation objects from list of codes
+        /// </summary>
+        /// <param name="codes"></param>
+        /// <returns></returns>
         public static List<IConversation> GetConversations(List<ConversationCode> codes)
         {
             List<IConversation> conversations = new List<IConversation>();
@@ -28,11 +47,12 @@ namespace BlueHeaven.src.Enums
             }
             return conversations;
         }
-        public static void DefineStory()
-        {
 
-            _storyDict[ConversationCode.WelcomeToBlueHeaven] = new Conversation(
-                "Welcome to Blue Heaven",
+        private static List<IConversation> _storyList = new List<IConversation>
+        {
+            #region Welcome to Blue Heaven
+            new Conversation(
+                ConversationCode.WelcomeToBlueHeaven,
                 new List<IConversationLine> {
                     new ConversationLine(
                         "Pink Mochi Tester 103",
@@ -43,16 +63,18 @@ namespace BlueHeaven.src.Enums
                         },
                         "Hello from the tester"),
                     new ConversationLine(
-                    "Pink Mochi Tester 103",
-                    new List<string> {
-                        "Hello!",
-                        "Hope you are ready for some great fun!",
-                        "This will be the greatest game ever!!"
-                    })
-                });
-
-            _storyDict[ConversationCode.AnotherGreeting] = new Conversation(
-                "Another Greeting",
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "Omg...",
+                            "Aren't you a poor little cutie?",
+                            "So bored that you'd resort to playing this xDDD",
+                            "So the game is called Blue Heaven...let's begin!"
+                        })
+                }),
+            #endregion
+            #region Another Greeting
+            new Conversation(
+                ConversationCode.AnotherGreeting,
                 new List<IConversationLine> {
                     new ConversationLine(
                         "Pink Mochi Tester 103",
@@ -65,7 +87,16 @@ namespace BlueHeaven.src.Enums
                         },
                         "Say Hello once more"
                     )
-                });
-        }
+                },
+                new List<IProvideCondition>
+                {
+                    new ConversationCondition(ConversationCode.WelcomeToBlueHeaven)
+                },
+                new List<IProvideCondition>
+                {
+                })
+            #endregion
+            // Next conversation?
+        };
     }
 }

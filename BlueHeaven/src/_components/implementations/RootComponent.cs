@@ -4,6 +4,10 @@ using BlueHeaven.src.Components.Choice;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Graphic;
 using BlueHeaven.src.Enums;
+
+/// <summary>
+/// Main program component
+/// </summary>
 namespace BlueHeaven.src.Components
 {
     // root component
@@ -28,6 +32,10 @@ namespace BlueHeaven.src.Components
         {
             get => _gameState.Finished;
         }
+
+        /// <summary>
+        /// Load all sub components
+        /// </summary>
         private void LoadComponents()
         {
             // add component builders
@@ -41,19 +49,35 @@ namespace BlueHeaven.src.Components
                 if (component is ChoiceComponent) component.IsActive = false;
             }
         }
+
+        /// <summary>
+        /// Load game data
+        /// </summary>
         private void LoadGame()
         {
             // add game builder
             _gameState = new GameState();
         }
+
+        /// <summary>
+        /// Process user inputs
+        /// </summary>
         public void ProcessInput()
         {
             _processor.Process(_components, _gameState);
         }
+
+        /// <summary>
+        /// Update program
+        /// </summary>
         public void Update()
         {
             _updater.Update(_components, _gameState);
         }
+
+        /// <summary>
+        /// Draw program graphic
+        /// </summary>
         public void Draw()
         {
             _renderer.Draw(_components, _gameState);

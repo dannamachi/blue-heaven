@@ -15,32 +15,40 @@ namespace BlueHeaven.src.Components
 
         public void Update(List<IGameComponent> components, IGameState gameState)
         {
-            string currentState = _router.CurrentState.Name;
+            IShowState currentState = _router.CurrentState;
             foreach (IGameComponent component in components)
             {
                 bool previousActiveState = (component.IsActive == true);
                 if (component.IsActive)
                     component.Update(gameState);
                 // update active status
-                if (component.ActiveUnderState == "Root" || component.ActiveUnderState == currentState) component.IsActive = true;
+                if (component.ActiveUnderState == "Root" || currentState.IsCalled(component.ActiveUnderState)) component.IsActive = true;
                 else component.IsActive = false;
-                // setup if reactivated
-                if (component.IsActive && !previousActiveState) component.Setup(gameState);
                 // specific cases
                 if (component is StoryComponent)
                 {
                     if (component.IsActive)
                     {
-                        if ((component as StoryComponent).Choosing) _router.RouteTo("Choosing");
+                        if ((component as StoryComponent).Choosing)
+                        {
+                            _router.RouteTo("Reading/Choosing");
+                            _router.SetRedirect("Reading", 1);
+                        }
                     }
                 }
                 if (component is ChoiceComponent)
                 {
                     if (component.IsActive)
                     {
-                        if ((component as ChoiceComponent).Chosen) _router.RouteTo("Reading");
+                        if ((component as ChoiceComponent).Chosen)
+                        {
+                            _router.RouteTo("Reading/Story");
+                            _router.SetRedirect("Reading", 0);
+                        }
                     }
                 }
+                // setup if reactivated
+                if (component.IsActive && !previousActiveState) component.Setup(gameState);
             }
         }
     }

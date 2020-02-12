@@ -2,7 +2,9 @@ using System.Collections.Generic;
 using BlueHeaven.src.Data;
 namespace BlueHeaven.src.Components
 {
-    // renderer: draws all active components
+    /// <summary>
+    /// Renders all sub components
+    /// </summary>
     public class RootRenderer : IComponentRenderer
     {
         public RootRenderer() { }

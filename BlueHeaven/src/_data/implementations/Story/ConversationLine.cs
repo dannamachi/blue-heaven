@@ -26,10 +26,11 @@ namespace BlueHeaven.src.Data.Story
         {
             get
             {
-                if (_count + 1 < _sentences.Count) _count += 1;
+                if (_count < _sentences.Count) _count += 1;
                 else _isfinished = true;
-                return _sentences[_count];
+                return _sentences[_count - 1];
             }
         }
+        public bool IsFinished { get => _isfinished; }
     }
 }

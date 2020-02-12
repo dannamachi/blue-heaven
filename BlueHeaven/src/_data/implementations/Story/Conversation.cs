@@ -52,7 +52,7 @@ namespace BlueHeaven.src.Data.Story
         public IHaveChoice GetChoiceDispenser { get => DecisionBuilder.GetChoiceDispenser(GameBundle.GetChoices(_code)); }
         public bool IsFinished { get => _isfinished; }
         public string Name { get => GameBundle.GetName(_code); }
-        public bool HaveChoice { get => GameBundle.GetChoices(_code) == ChoiceDispenserCode.None; }
+        public bool HaveChoice { get => GameBundle.GetChoices(_code) != ChoiceDispenserCode.None; }
 
         /// <summary>
         /// Get bool whether choice is allowed
@@ -70,11 +70,12 @@ namespace BlueHeaven.src.Data.Story
                     if (HaveChoice)
                     {
                         GetChoiceDispenser.SetChoice(0);
+                        GetChoiceDispenser.Chosen.IsChosen(gameState);
                         return false;
                     }
                 }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -84,6 +85,7 @@ namespace BlueHeaven.src.Data.Story
         /// <returns></returns>
         public bool CanBeRead(IGameState gameState)
         {
+            if (gameState.HasConversation(_code)) return false;
             // conditions
             foreach (IProvideCondition condition in _conditionsToGet)
             {
@@ -99,7 +101,7 @@ namespace BlueHeaven.src.Data.Story
         /// <returns></returns>
         public bool IsCalled(string name)
         {
-            return name.Trim() == StoryBuilder.GetName(_code);
+            return name.Trim() == GameBundle.GetName(_code);
         }
 
         /// <summary>

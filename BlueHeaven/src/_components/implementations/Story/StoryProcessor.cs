@@ -1,28 +1,38 @@
 using System.Collections.Generic;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Components;
+using BlueHeaven.src.Enums;
+using BlueHeaven.src.Services;
 namespace BlueHeaven.src.Components.Story
 {
-    // processor: process user input for story component (clicking to proceed)
+    /// <summary>
+    /// Processes user input (clicking to proceed)
+    /// </summary>
     public class StoryProcessor : IActionProcessor
     {
-        private bool HasClicked()
+        private ClickDetectingService _clicking;
+        public StoryProcessor()
         {
-            return true; // detect clicking
+            NextLine = false;
+            RefreshService();
         }
-        private bool HasFinishedChoosing(IGameState gameState)
+
+        public void RefreshService()
         {
-            return gameState.ChoiceDispenser == null;
+            _clicking = new ClickDetectingService();
         }
+
+        /// <summary>
+        /// Processes story mode
+        /// </summary>
+        /// <param name="gameState"></param>
         public void Process(IGameState gameState)
         {
-            if (HasClicked())
-            {
-                if (HasFinishedChoosing(gameState))
-                    gameState.NextLine = true;
-            }
-            else
-                gameState.NextLine = false;
+            _clicking.SnapShot();
+            if (_clicking.IsClicked(GraphicDimension.StoryFrame)) NextLine = true;
+            else NextLine = false;
         }
+
+        public bool NextLine { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 using BlueHeaven.src.Data;
 namespace BlueHeaven.src.Components
 {
-    // abstract: render graphic objects of a component
+    /// <summary>
+    /// Draws graphic objects stored
+    /// </summary>
     public interface IObjectRenderer
     {
         void Draw(IGameState gameState);

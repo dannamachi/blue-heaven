@@ -3,16 +3,38 @@ using System;
 using BlueHeaven.src.Components;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Graphic;
+using Microsoft.Xna.Framework.Graphics;
 namespace BlueHeaven.src.Components.Personality
 {
-    // renderer: draws personality editor
+    /// <summary>
+    /// Renders the personality editor component
+    /// </summary>
     public class PersonalityRenderer : IObjectRenderer
     {
         private List<IGraphicObject> _objects;
-        public PersonalityRenderer(List<IGraphicObject> objects)
+        private List<IGraphicObject> _buttons;
+        private SpriteBatch _sbatch;
+        public PersonalityRenderer(List<IGraphicObject> objects, SpriteBatch sbatch)
         {
-            _objects = objects;
+            _sbatch = sbatch;
+            string[] toggleButtons = new string[] { "EditToggle1", "EditToggle2", "EditToggle3", "EditToggle4" };
+            _objects = new List<IGraphicObject>();
+            _buttons = new List<IGraphicObject>();
+            foreach (IGraphicObject object1 in _objects)
+            {
+                for (int i = 0; i < toggleButtons.Length; i++)
+                {
+                    if (!object1.IsCalled(toggleButtons[i])) { _objects.Add(object1); break; }
+                    else { _buttons.Add(object1); break; }
+                }
+            }
         }
+
+        /// <summary>
+        /// (P) Get list containing 4 digits representing personality
+        /// </summary>
+        /// <param name="personality"></param>
+        /// <returns></returns>
         private int[] GetPersonality(int personality)
         {
             int remainder;
@@ -24,52 +46,37 @@ namespace BlueHeaven.src.Components.Personality
             toggleFour = remainder;
             return new int[] { toggleOne, toggleTwo, toggleThree, toggleFour };
         }
+
+        /// <summary>
+        /// (P) Update alternate status of toggle buttons
+        /// </summary>
+        /// <param name="personality"></param>
+        private void UpdateAlternateState(int personality)
+        {
+            int[] personalityArray = GetPersonality(personality);
+            for (int i = 0; i < 4; i++)
+            {
+                _buttons[i].IsAlternate = !(personalityArray[i] == 1);
+            }
+        }
+
+        /// <summary>
+        /// Draws the component
+        /// </summary>
+        /// <param name="gameState"></param>
         public void Draw(IGameState gameState)
         {
-            string[] toggleButtons = new string[] { "EditToggle1", "EditToggle2", "EditToggle3", "EditToggle4" };
             // draw greyed overlay if unable to edit
             if (!gameState.Editable)
             {
 
             }
             // draw content when there is character to edit
+            foreach (IGraphicObject obj in _objects) { obj.Draw(_sbatch); }
             if (gameState.EditingCharacter != null)
             {
-                int[] personalityArray = GetPersonality(gameState.EditingCharacter.IsOfPersonality);
-                foreach (IGraphicObject object1 in _objects)
-                {
-                    for (int i = 0; i < toggleButtons.Length; i++)
-                    {
-                        // draw personality toggle buttons
-                        if (object1.IsCalled(toggleButtons[i]))
-                        {
-                            if (personalityArray[i] == 1) object1.Draw();
-                            else object1.DrawAlternate();
-                            break;
-                        }
-                        // draw gui objects/background
-                        else
-                        {
-                            object1.Draw();
-                        }
-                    }
-                }
-            }
-            // draw content when there is no character
-            else
-            {
-                foreach (IGraphicObject object1 in _objects)
-                {
-                    for (int i = 0; i < toggleButtons.Length; i++)
-                    {
-                        // draw gui objects/background
-                        if (!object1.IsCalled(toggleButtons[i]))
-                        {
-                            object1.Draw();
-                            break;
-                        }
-                    }
-                }
+                UpdateAlternateState(gameState.EditingCharacter.IsOfPersonality);
+                foreach (IGraphicObject obj in _buttons) { obj.Draw(_sbatch); }
             }
         }
     }

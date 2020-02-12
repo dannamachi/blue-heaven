@@ -5,11 +5,9 @@ namespace BlueHeaven.src.Components.Choice
     // updater: updates state of choosing
     public class ChoiceUpdater : IStateUpdater
     {
-        private IRoute _router;
-        public ChoiceUpdater(IRoute router)
+        public ChoiceUpdater()
         {
             Chosen = -1;
-            _router = router;
         }
         public void Update(IGameState gameState)
         {
@@ -17,7 +15,6 @@ namespace BlueHeaven.src.Components.Choice
             {
                 gameState.ChoiceDispenser.SetChoice(Chosen);
                 gameState.ChoiceDispenser.Chosen.IsChosen(gameState);
-                _router.RouteTo("Reading");
             }
         }
         public int Chosen { get; set; }

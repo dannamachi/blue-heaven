@@ -7,5 +7,6 @@ namespace BlueHeaven.src.Data
         bool IsCalled(string name);
         string Speaker { get; }
         string Sentence { get; }
+        bool IsFinished { get; }
     }
 }

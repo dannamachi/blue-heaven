@@ -6,15 +6,23 @@ namespace BlueHeaven.src.Data
     {
         private string _name;
         private List<IShowState> _routableStates;
-        public StateBeacon(string name, List<IShowState> routableStates)
+        public StateBeacon(string name)
         {
-            _routableStates = routableStates;
+            _routableStates = new List<IShowState>();
             _name = name;
         }
         public string Name { get => _name; }
         public bool IsCalled(string name)
         {
             return name.Trim() == _name.Trim();
+        }
+        public void SetRoutes(List<IShowState> states)
+        {
+            _routableStates = new List<IShowState>();
+            foreach (IShowState state in states)
+            {
+                _routableStates.Add(state);
+            }
         }
         public IShowState RouteTo(string name)
         {

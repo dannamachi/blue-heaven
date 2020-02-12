@@ -2,3 +2,9 @@
 *.ide-shm
 *.ide-wal
 *.cache
+*.suo
+*.FileListAbsolute.txt
+*.exeg
+*.pdb
+*.xnb
+

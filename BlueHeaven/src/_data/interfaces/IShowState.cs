@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 namespace BlueHeaven.src.Data
 {
     // abstract: tells what state the game is in
@@ -6,5 +7,6 @@ namespace BlueHeaven.src.Data
         IShowState RouteTo(string name);
         string Name { get; }
         bool IsCalled(string name);
+        void SetRoutes(List<IShowState> states);
     }
 }

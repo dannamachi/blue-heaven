@@ -1,9 +1,14 @@
 using System.Collections.Generic;
 using BlueHeaven.src.Components.Story;
 using BlueHeaven.src.Components.Choice;
+using BlueHeaven.src.Components.Navigation;
+using BlueHeaven.src.Components.Title;
+using BlueHeaven.src.Components.Help;
+using BlueHeaven.src.Components.Credits;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Graphic;
 using BlueHeaven.src.Enums;
+using Microsoft.Xna.Framework.Graphics;
 
 /// <summary>
 /// Main program component
@@ -19,14 +24,14 @@ namespace BlueHeaven.src.Components
         private RootRenderer _renderer;
         private IGameState _gameState;
         private IRoute _router;
-        public RootComponent()
+        public RootComponent(GraphicsDevice graphics, SpriteBatch sbatch)
         {
-            LoadComponents();
-            LoadGame();
             _router = new GameRouter();
             _processor = new RootProcessor();
             _updater = new RootUpdater(_router);
             _renderer = new RootRenderer();
+            LoadComponents(graphics, sbatch);
+            LoadGame();
         }
         public bool HasEnded
         {
@@ -36,17 +41,25 @@ namespace BlueHeaven.src.Components
         /// <summary>
         /// Load all sub components
         /// </summary>
-        private void LoadComponents()
+        private void LoadComponents(GraphicsDevice graphics, SpriteBatch sbatch)
         {
             // add component builders
             _components = new List<IGameComponent>();
-            _components.Add(new StoryComponent(new List<ConversationCode>(),new List<IGraphicObject>(),_router));
-            _components.Add(new ChoiceComponent(new List<IGraphicObject>(),_router));
+            _components.Add(new StoryComponent(StoryBuilder.GetPackage(""), GraphicBuilder.GetGraphics("Story"), sbatch));
+            _components.Add(new ChoiceComponent(GraphicBuilder.GetGraphics("Choice"), sbatch));
+            _components.Add(new NavigationComponent(GraphicBuilder.GetGraphics("Navigation"), _router, sbatch));
+            _components.Add(new TitleComponent(GraphicBuilder.GetGraphics("Title"), _router, sbatch));
+            _components.Add(new HelpComponent(GraphicBuilder.GetGraphics("Info"), sbatch));
+            _components.Add(new CreditsComponent(GraphicBuilder.GetGraphics("Info"), sbatch));
             // initial active status
             foreach (IGameComponent component in _components)
             {
-                if (component is StoryComponent) component.IsActive = true;
+                if (component is StoryComponent) component.IsActive = false;
                 if (component is ChoiceComponent) component.IsActive = false;
+                if (component is NavigationComponent) component.IsActive = true;
+                if (component is TitleComponent) component.IsActive = true;
+                if (component is HelpComponent) component.IsActive = false;
+                if (component is CreditsComponent) component.IsActive = false;
             }
         }
 
@@ -57,6 +70,11 @@ namespace BlueHeaven.src.Components
         {
             // add game builder
             _gameState = new GameState();
+            // set up all initial active
+            foreach (IGameComponent component in _components)
+            {
+                if (component.IsActive) component.Setup(_gameState);
+            }
         }
 
         /// <summary>

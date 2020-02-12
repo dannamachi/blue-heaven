@@ -12,9 +12,6 @@ namespace BlueHeaven.src.Data
         /// </summary>
         IHaveChoice ChoiceDispenser { get; set; }
 
-        // TO REMOVE: bool whether user has indicated next line
-        bool NextLine { get; set; }
-
         /// <summary>
         /// Get current conversation
         /// </summary>

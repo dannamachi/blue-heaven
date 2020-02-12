@@ -48,7 +48,15 @@
     <Compile Include="src\_components\implementations\Choice\ChoiceProcessor.cs" />
     <Compile Include="src\_components\implementations\Choice\ChoiceRenderer.cs" />
     <Compile Include="src\_components\implementations\Choice\ChoiceUpdater.cs" />
+    <Compile Include="src\_components\implementations\Credits\CreditsComponent.cs" />
+    <Compile Include="src\_components\implementations\Credits\CreditsProcessor.cs" />
+    <Compile Include="src\_components\implementations\Credits\CreditsRenderer.cs" />
+    <Compile Include="src\_components\implementations\Credits\CreditsUpdater.cs" />
     <Compile Include="src\_components\implementations\GameRouter.cs" />
+    <Compile Include="src\_components\implementations\Help\HelpComponent.cs" />
+    <Compile Include="src\_components\implementations\Help\HelpProcessor.cs" />
+    <Compile Include="src\_components\implementations\Help\HelpRenderer.cs" />
+    <Compile Include="src\_components\implementations\Help\HelpUpdater.cs" />
     <Compile Include="src\_components\implementations\Navigation\NavigationComponent.cs" />
     <Compile Include="src\_components\implementations\Navigation\NavigationProcessor.cs" />
     <Compile Include="src\_components\implementations\Navigation\NavigationRenderer.cs" />
@@ -100,13 +108,20 @@
     <Compile Include="src\_data\interfaces\IProvideCondition.cs" />
     <Compile Include="src\_data\interfaces\ISentiment.cs" />
     <Compile Include="src\_data\interfaces\IShowState.cs" />
+    <Compile Include="src\_enums\CommonUtilities.cs" />
     <Compile Include="src\_enums\DecisionBuilder.cs" />
+    <Compile Include="src\_enums\GameBundle.cs" />
+    <Compile Include="src\_enums\GameFonts.cs" />
     <Compile Include="src\_enums\GraphicBuilder.cs" />
     <Compile Include="src\_enums\GraphicDimension.cs" />
     <Compile Include="src\_enums\Personality.cs" />
     <Compile Include="src\_enums\StoryBuilder.cs" />
     <Compile Include="src\_graphic\implementations\GraphicObject.cs" />
     <Compile Include="src\_graphic\interfaces\IGraphicObject.cs" />
+    <Compile Include="src\_graphic\interfaces\IShape.cs" />
+    <Compile Include="src\_graphic\implementations\GraphicRectangle.cs" />
+    <Compile Include="src\_services\ClickDetectingService.cs" />
+    <Compile Include="src\_services\InfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -124,7 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\_components\implementations\Alert\" />
-    <Folder Include="src\_components\implementations\Info\" />
     <Folder Include="src\_components\implementations\Reload\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,34 +1,34 @@
+using Microsoft.Xna.Framework.Graphics;
 namespace BlueHeaven.src.Graphic
 {
     // graphic: object that can draw itself
     public class GraphicObject : IGraphicObject
     {
         private string _name;
-        private int[] _drawRect;
-        public GraphicObject(string name, int[] drawRect) // pass in 2 ways of drawing??
+        private IShape _shape, _shapeAlt;
+        public GraphicObject(string name, IShape shape1, IShape shape2 = null) // pass in 2 ways of drawing??
         {
             _name = name;
-            _drawRect = drawRect;
             IsActive = true;
+            IsAlternate = false;
+            _shape = shape1;
+            _shapeAlt = shape2;
         }
-        public void Draw()
+        public void Draw(SpriteBatch sbatch)
         {
-            // draw code
+            if (IsAlternate && _shapeAlt != null) _shapeAlt.Draw(sbatch);
+            else _shape.Draw(sbatch);
         }
-        public void DrawAlternate()
+        public bool IsClicked(int mousex, int mousey)
         {
-            // draw code for alt form
-        }
-        public bool IsClicked()
-        {
-            // check mouse is within draw rect
-            // false if not IsActive
-            return true;
+            if (!IsActive) return false;
+            return _shape.IsClickedBy(mousex, mousey);
         }
         public bool IsCalled(string id)
         {
             return id.Trim() == _name.Trim();
         }
         public bool IsActive { get; set; }
+        public bool IsAlternate { get; set; }
     }
 }

@@ -2,23 +2,43 @@ using System.Collections.Generic;
 using BlueHeaven.src.Components;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Graphic;
+using BlueHeaven.src.Services;
+using BlueHeaven.src.Enums;
+
 namespace BlueHeaven.src.Components.Title
 {
     // processor: processes request to navigate
     public class TitleProcessor : IActionProcessor
     {
-        private List<IGraphicObject> _objects;
-        public TitleProcessor(List<IGraphicObject> objects)
+        private ClickDetectingService _clicking;
+        public TitleProcessor()
         {
-            _objects = objects;
+            RefreshService();
             NavigatingTo = -1;
+        }
+        
+        public void RefreshService()
+        {
+            _clicking = new ClickDetectingService();
         }
         public void Process(IGameState gameState)
         {
-            // detect clicking of button
-            NavigatingTo = -1;
+            _clicking.SnapShot();
+            Hovering = _clicking.WhichIsHovered(new List<int[]>
+            {
+                GraphicDimension.TitleHelp,
+                GraphicDimension.TitleCredits,
+                GraphicDimension.TitleReload
+            });
+            NavigatingTo = _clicking.WhichIsClicked(new List<int[]>
+            {
+                GraphicDimension.TitleHelp,
+                GraphicDimension.TitleCredits,
+                GraphicDimension.TitleReload
+            });
+  
         }
-        public bool NavigationDetected { get => NavigatingTo != -1; }
+        public int Hovering { get; set; }
         public int NavigatingTo { get; set; }
     }
 }

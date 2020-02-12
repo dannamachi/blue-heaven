@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
+using BlueHeaven.src.Components;
+using BlueHeaven.src.Enums;
 
 namespace BlueHeaven
 {
@@ -11,6 +14,7 @@ namespace BlueHeaven
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        RootComponent _root;
 
         public Game1()
         {
@@ -27,7 +31,10 @@ namespace BlueHeaven
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
+            graphics.PreferredBackBufferWidth = GraphicDimension.MainWindow[0];
+            graphics.PreferredBackBufferHeight = GraphicDimension.MainWindow[1];
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
@@ -39,8 +46,15 @@ namespace BlueHeaven
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            List<SpriteFont> fontList = new List<SpriteFont>
+            {
+                Content.Load<SpriteFont>("fonts/Generic")
+            };
 
             // TODO: use this.Content to load your game content here
+            GameFonts.LoadFonts(fontList);
+            GraphicBuilder.BuildObjects(GraphicsDevice);
+            _root = new RootComponent(GraphicsDevice, spriteBatch);
         }
 
         /// <summary>
@@ -63,7 +77,8 @@ namespace BlueHeaven
                 Exit();
 
             // TODO: Add your update logic here
-
+            _root.ProcessInput();
+            _root.Update();
             base.Update(gameTime);
         }
 
@@ -76,7 +91,7 @@ namespace BlueHeaven
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            _root.Draw();
             base.Draw(gameTime);
         }
     }

@@ -20,6 +20,7 @@ namespace BlueHeaven.src.Components.Personality
 
             // get which toggle button clicked (index 0,1,2,3)
             _selected = -1;
+            // set that button to alternate
             // deactivate all toggle buttons once one is clicked
             //if (_selected != -1)
             //    gameState.Editable = false;

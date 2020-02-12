@@ -12,6 +12,7 @@ namespace BlueHeaven.src.Components.Navigation
             _router = router;
         }
         public int NavigatingTo { get; set; }
+
         public void Update(IGameState gameState)
         {
             // menu order
@@ -27,6 +28,9 @@ namespace BlueHeaven.src.Components.Navigation
                     _router.RouteTo("Editing");
                     break;
             }
+            CurrentState = _router.CurrentState.Name;
         }
+
+        public string CurrentState { get; set; }
     }
 }

@@ -18,17 +18,10 @@ namespace BlueHeaven.src.Data
                                                              // add builder
         }
 
-        // TO REMOVE: next routed state of the game
-        public int NavigatingTo { get; set; }
-
         /// <summary>
         /// Get current choice dispenser
         /// </summary>
         public IHaveChoice ChoiceDispenser { get; set; }
-
-
-        // TO REMOVE: bool whether user has indicated next line
-        public bool NextLine { get; set; }
 
         /// <summary>
         /// Get current conversation

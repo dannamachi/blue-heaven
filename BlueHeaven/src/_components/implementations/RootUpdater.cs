@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using BlueHeaven.src.Data;
+using BlueHeaven.src.Components.Story;
+using BlueHeaven.src.Components.Choice;
 namespace BlueHeaven.src.Components
 {
     // updater: updates all (active) components
@@ -10,6 +12,7 @@ namespace BlueHeaven.src.Components
         {
             _router = router;
         }
+
         public void Update(List<IGameComponent> components, IGameState gameState)
         {
             string currentState = _router.CurrentState.Name;
@@ -23,6 +26,21 @@ namespace BlueHeaven.src.Components
                 else component.IsActive = false;
                 // setup if reactivated
                 if (component.IsActive && !previousActiveState) component.Setup(gameState);
+                // specific cases
+                if (component is StoryComponent)
+                {
+                    if (component.IsActive)
+                    {
+                        if ((component as StoryComponent).Choosing) _router.RouteTo("Choosing");
+                    }
+                }
+                if (component is ChoiceComponent)
+                {
+                    if (component.IsActive)
+                    {
+                        if ((component as ChoiceComponent).Chosen) _router.RouteTo("Reading");
+                    }
+                }
             }
         }
     }

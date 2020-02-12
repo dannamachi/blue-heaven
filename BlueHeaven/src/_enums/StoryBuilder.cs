@@ -31,6 +31,18 @@ namespace BlueHeaven.src.Enums
             }
             return null;
         }
+
+        /// <summary>
+        /// Get list of conversation codes based on key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static List<ConversationCode> GetPackage(string key)
+        {
+            // return different packages by different keys
+            // for now return all test convos
+            return new List<ConversationCode> { ConversationCode.AnotherGreeting, ConversationCode.WelcomeToBlueHeaven };
+        }
         
         /// <summary>
         /// Get list of conversation objects from list of codes

@@ -8,5 +8,7 @@ namespace BlueHeaven.src.Components
         IShowState CurrentState { get; }
         // switch to requested state (can add condition?)
         void RouteTo(string nextState);
+        // set redirect for nexted state
+        void SetRedirect(string stateName, int index);
     }
 }

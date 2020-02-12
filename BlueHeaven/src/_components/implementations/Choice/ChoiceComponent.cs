@@ -42,7 +42,7 @@ namespace BlueHeaven.src.Components.Choice
             _renderer.Draw(gameState);
         }
         public bool IsActive { get; set; }
-        public string ActiveUnderState { get => "Choosing"; }
+        public string ActiveUnderState { get => "Reading/Choosing"; }
         public bool Chosen { get; set; }
     }
 }

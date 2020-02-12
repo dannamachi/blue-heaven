@@ -27,8 +27,8 @@ namespace BlueHeaven.src.Components.Navigation
                 case "Credits":
                     currState = 1;
                     break;
-                case "Reading":
-                case "Choosing":
+                case "Reading/Choosing":
+                case "Reading/Story":
                     currState = 2;
                     break;
                 case "Setting":

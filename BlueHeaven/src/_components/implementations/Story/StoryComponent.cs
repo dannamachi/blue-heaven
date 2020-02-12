@@ -25,7 +25,7 @@ namespace BlueHeaven.src.Components.Story
             Choosing = false;
         }
         public bool IsActive { get; set; }
-        public string ActiveUnderState { get => "Reading"; }
+        public string ActiveUnderState { get => "Reading/Story"; }
 
         /// <summary>
         /// Call when story is resumed

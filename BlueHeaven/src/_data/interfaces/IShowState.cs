@@ -8,5 +8,9 @@ namespace BlueHeaven.src.Data
         string Name { get; }
         bool IsCalled(string name);
         void SetRoutes(List<IShowState> states);
+        bool HasSubroutes { get; }
+        void SetSubroutes(List<IShowState> subs);
+        IShowState GetSubroute { get; }
+        void SetRedirect(int index);
     }
 }

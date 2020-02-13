@@ -1,6 +1,5 @@
 namespace BlueHeaven.src.Data
 {
-    // abstract: feeling of ICharacter towards another ICharacter
     public enum SentimentStatus
     {
         SwornEnemy = -40,
@@ -14,11 +13,16 @@ namespace BlueHeaven.src.Data
         CloseFriend = 80,
         Lover = 100
     }
+
     public interface ISentiment
     {
+        bool IsOfStatus(int status);
         bool IsOfStatus(SentimentStatus status);
+        bool IsBelowStatus(int status);
+        bool IsBelowStatus(SentimentStatus status);
         void IncreaseBy(int num);
-        void DecreaseBy(int num);
         bool IsRomantic { get; set; }
+        // DEBUG
+        int Status { get; }
     }
 }

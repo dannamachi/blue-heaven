@@ -5,6 +5,7 @@ namespace BlueHeaven.src.Data
     // abstract: contains data about content of a conversation/scene
     public interface IConversation
     {
+        ConversationCode ConCode { get; }
         string Name { get; }
         bool CanBeRead(IGameState gameState);
         bool IsCalled(string name);
@@ -19,5 +20,6 @@ namespace BlueHeaven.src.Data
         IHaveChoice GetChoiceDispenser { get; }
         void Advance();
         void SetCondition(List<IProvideCondition> toGet, List<IProvideCondition> toChoose);
+        MilestoneCode MileCode { get; }
     }
 }

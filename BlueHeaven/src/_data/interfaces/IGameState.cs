@@ -8,6 +8,13 @@ namespace BlueHeaven.src.Data
     public interface IGameState
     {
         /// <summary>
+        /// Load data from Package
+        /// </summary>
+        /// <param name="characters"></param>
+        /// <param name="editing"></param>
+        void LoadData(List<ICharacter> characters, Dictionary<ConversationCode, CharacterCode> editing);
+        
+        /// <summary>
         /// Get current choice dispenser
         /// </summary>
         IHaveChoice ChoiceDispenser { get; set; }
@@ -18,7 +25,7 @@ namespace BlueHeaven.src.Data
         IConversation Conversation { get; set; }
 
         // TO FIX: get character by name (string)
-        ICharacter GetCharacter(string name);
+        ICharacter GetCharacter(CharacterCode charCode);
 
         /// <summary>
         /// Get bool if there is no readable conversation to fetch
@@ -26,9 +33,10 @@ namespace BlueHeaven.src.Data
         bool Finished { get; set; }
 
         /// <summary>
-        /// Get list of finished conversations
+        /// Add conversation to finished list
         /// </summary>
-        List<IConversation> FinishedConversations { get; }
+        /// <param name="code"></param>
+        void FinishConversation(IConversation convo);
 
         /// <summary>
         /// Get bool if a conversation is finished (using code)
@@ -37,7 +45,16 @@ namespace BlueHeaven.src.Data
         /// <returns></returns>
         bool HasConversation(ConversationCode code);
 
-        // TO REMOVE: current character open for editing
+        /// <summary>
+        /// Get bool if a milestone has been reached
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        bool HasMilestone(MilestoneCode code);
+        
+        /// <summary>
+        /// Get character open for editing
+        /// </summary>
         ICharacter EditingCharacter { get; }
 
         // TO REMOVE: changing which parameter of personality
@@ -46,6 +63,6 @@ namespace BlueHeaven.src.Data
         /// <summary>
         /// Get bool if editing is allowed at current conversation
         /// </summary>
-        bool Editable { get; set; }
+        bool Editable { get; }
     }
 }

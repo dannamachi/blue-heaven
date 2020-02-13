@@ -8,15 +8,19 @@ namespace BlueHeaven.src.Components.Choice
         public ChoiceUpdater()
         {
             Chosen = -1;
+            ChooseSwitch = true;
         }
         public void Update(IGameState gameState)
         {
-            if (Chosen != -1)
+            if (Chosen != -1 && ChooseSwitch)
             {
                 gameState.ChoiceDispenser.SetChoice(Chosen);
                 gameState.ChoiceDispenser.Chosen.IsChosen(gameState);
+                ChooseSwitch = false;
             }
         }
         public int Chosen { get; set; }
+
+        public bool ChooseSwitch { get; set; }
     }
 }

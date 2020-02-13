@@ -9,6 +9,8 @@ namespace BlueHeaven.src.Enums
         Jules = 1211,
         Ulysses = 2112,
         Yukina = 2122,
+        Mochi = 2211,
+        KingCrab = 1122,
         Broken = 0
     }
 }

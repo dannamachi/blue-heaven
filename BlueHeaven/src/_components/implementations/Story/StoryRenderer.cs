@@ -79,12 +79,16 @@ namespace BlueHeaven.src.Components.Story
                     _sbatch);
 
             if (CurrentLine != null && CurrentLine.IsFinished) _speaker = null;
-
+            // DEBUG
+            CommonUtilities.DrawFont(
+                    "",
+                    FontEnum.Font20,
+                    new Vector2(50,50),
+                    Color.Black,
+                    _sbatch);
         }
 
         public bool NextLine { get; set; }
-
-        public bool SkipNextLine { get; set; }
 
         public IConversationLine CurrentLine
         {

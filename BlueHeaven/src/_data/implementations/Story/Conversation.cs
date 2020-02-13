@@ -9,6 +9,7 @@ namespace BlueHeaven.src.Data.Story
     public class Conversation : IConversation
     {
         private ConversationCode _code;
+        private MilestoneCode _milestone;
         private bool _isfinished;
         private int _count;
         private List<IConversationLine> _lines;
@@ -22,7 +23,8 @@ namespace BlueHeaven.src.Data.Story
         /// <param name="choiceDispenser"></param>
         public Conversation(
             ConversationCode code, 
-            List<IConversationLine> lines)
+            List<IConversationLine> lines,
+            MilestoneCode mile = MilestoneCode.None)
         {
             _code = code;
             _lines = lines;
@@ -30,6 +32,7 @@ namespace BlueHeaven.src.Data.Story
             _count = 0;
             _conditionsToGet = new List<IProvideCondition>();
             _conditionsToChoose = new List<IProvideCondition>();
+            _milestone = mile;
         }
 
         /// <summary>
@@ -44,7 +47,8 @@ namespace BlueHeaven.src.Data.Story
             ConversationCode code,
             List<IConversationLine> lines,
             List<IProvideCondition> toGet,
-            List<IProvideCondition> toChoose) : this(code,lines)
+            List<IProvideCondition> toChoose,
+            MilestoneCode mile = MilestoneCode.None) : this(code,lines,mile)
         {
             SetCondition(toGet, toChoose);
         }
@@ -52,6 +56,8 @@ namespace BlueHeaven.src.Data.Story
         public IHaveChoice GetChoiceDispenser { get => DecisionBuilder.GetChoiceDispenser(GameBundle.GetChoices(_code)); }
         public bool IsFinished { get => _isfinished; }
         public string Name { get => GameBundle.GetName(_code); }
+        public ConversationCode ConCode { get => _code; }
+        public MilestoneCode MileCode { get => _milestone; }
         public bool HaveChoice { get => GameBundle.GetChoices(_code) != ChoiceDispenserCode.None; }
 
         /// <summary>
@@ -86,6 +92,7 @@ namespace BlueHeaven.src.Data.Story
         public bool CanBeRead(IGameState gameState)
         {
             if (gameState.HasConversation(_code)) return false;
+            if (gameState.HasMilestone(_milestone)) return false;
             // conditions
             foreach (IProvideCondition condition in _conditionsToGet)
             {

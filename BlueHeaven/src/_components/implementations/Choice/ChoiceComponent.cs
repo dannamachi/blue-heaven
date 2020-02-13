@@ -25,6 +25,8 @@ namespace BlueHeaven.src.Components.Choice
         {
             Chosen = false;
             _processor.RefreshService();
+            _updater.Chosen = -1;
+            _updater.ChooseSwitch = true;
         }
         public void ProcessInput(IGameState gameState)
         {

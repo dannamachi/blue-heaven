@@ -9,7 +9,7 @@ namespace BlueHeaven.src.Enums
         private static Dictionary<ConversationCode, ChoiceDispenserCode> _cDict = new Dictionary<ConversationCode, ChoiceDispenserCode>
         {
             { ConversationCode.WelcomeToBlueHeaven, ChoiceDispenserCode.SayHelloOrNah },
-            { ConversationCode.AnotherGreeting, ChoiceDispenserCode.None }
+            { ConversationCode.AnotherGreeting, ChoiceDispenserCode.WarCry }
         };
 
         private static Dictionary<ConversationCode, string> _nameDict = new Dictionary<ConversationCode, string>

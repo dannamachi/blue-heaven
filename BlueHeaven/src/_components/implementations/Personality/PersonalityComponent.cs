@@ -21,7 +21,7 @@ namespace BlueHeaven.src.Components.Personality
         }
         public void Setup(IGameState gameState)
         {
-            gameState.Editable = (gameState.EditingCharacter != null);
+
         }
         public bool IsActive { get; set; }
         public string ActiveUnderState { get => "Editing"; }

@@ -16,16 +16,21 @@ namespace BlueHeaven.src.Components.Story
         private StoryUpdater _updater;
         private StoryRenderer _renderer;
 
-        public StoryComponent(List<ConversationCode> codes, List<IGraphicObject> objects, SpriteBatch sbatch)
+        public StoryComponent(List<IGraphicObject> objects, SpriteBatch sbatch)
         {
             _processor = new StoryProcessor();
-            _updater = new StoryUpdater(codes);
+            _updater = new StoryUpdater(new List<ConversationCode>());
             _renderer = new StoryRenderer(objects, sbatch);
             IsActive = true;
             Choosing = false;
         }
         public bool IsActive { get; set; }
         public string ActiveUnderState { get => "Reading/Story"; }
+
+        public void SetConversation(List<ConversationCode> convos)
+        {
+            _updater.SetConversations(convos);
+        }
 
         /// <summary>
         /// Call when story is resumed
@@ -65,6 +70,7 @@ namespace BlueHeaven.src.Components.Story
                 _updater.DetectChangeLine = false;
             }
             _renderer.NextLine = _updater.NextLine;
+            _processor.Finished = _updater.Finished;
         }
 
         /// <summary>

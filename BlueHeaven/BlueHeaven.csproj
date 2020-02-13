@@ -91,6 +91,9 @@
     <Compile Include="src\_data\implementations\Choice\ChoiceDispenser.cs" />
     <Compile Include="src\_data\implementations\Choice\ChoiceEffect.cs" />
     <Compile Include="src\_data\implementations\GameState.cs" />
+    <Compile Include="src\_data\implementations\Package\GamePackage.cs" />
+    <Compile Include="src\_data\interfaces\IPackage.cs" />
+    <Compile Include="src\_enums\PackageBuilder.cs" />
     <Compile Include="src\_data\implementations\Sentiment.cs" />
     <Compile Include="src\_data\implementations\StateBeacon.cs" />
     <Compile Include="src\_data\implementations\Story\Conversation.cs" />
@@ -108,6 +111,7 @@
     <Compile Include="src\_data\interfaces\IProvideCondition.cs" />
     <Compile Include="src\_data\interfaces\ISentiment.cs" />
     <Compile Include="src\_data\interfaces\IShowState.cs" />
+    <Compile Include="src\_enums\CharacterBuilder.cs" />
     <Compile Include="src\_enums\CommonUtilities.cs" />
     <Compile Include="src\_enums\DecisionBuilder.cs" />
     <Compile Include="src\_enums\GameBundle.cs" />
@@ -140,6 +144,7 @@
   <ItemGroup>
     <Folder Include="src\_components\implementations\Alert\" />
     <Folder Include="src\_components\implementations\Reload\" />
+    <Folder Include="src\_components\implementations\Reset\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

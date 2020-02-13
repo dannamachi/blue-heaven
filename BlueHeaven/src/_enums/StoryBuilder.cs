@@ -10,8 +10,28 @@ namespace BlueHeaven.src.Enums
     public enum ConversationCode
     {
         WelcomeToBlueHeaven,
-        AnotherGreeting
+        AnotherGreeting,
+        WillYouBeTheTrueYou,
+        YouHaveBeenGood,
+        WhoAreYou
     }
+
+    public enum MilestoneCode
+    {
+        None,
+        WhoIsYourGuide
+    }
+
+    //    SwornEnemy = -40,
+    //    BitterEnemy = -20,
+    //    Enemy = -10,
+    //    Stranger = 0,
+    //    Acquaintance = 10,
+    //    Friend = 25,
+    //    GoodFriend = 45,
+    //    TrustedFriend = 70,
+    //    CloseFriend = 80,
+    //    Lover = 100
 
     /// <summary>
     /// Container of conversations
@@ -30,18 +50,6 @@ namespace BlueHeaven.src.Enums
                 if (convo.IsCalled(code)) return convo;
             }
             return null;
-        }
-
-        /// <summary>
-        /// Get list of conversation codes based on key
-        /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        public static List<ConversationCode> GetPackage(string key)
-        {
-            // return different packages by different keys
-            // for now return all test convos
-            return new List<ConversationCode> { ConversationCode.AnotherGreeting, ConversationCode.WelcomeToBlueHeaven };
         }
         
         /// <summary>
@@ -95,7 +103,8 @@ namespace BlueHeaven.src.Enums
                             "Hi Hi Hi hi hi hi!!!",
                             "How are you feeling?",
                             "Isn't it a great day today???",
-                            "I'm trying my best; are you annoyed just yet?"
+                            "I'm trying my best; are you annoyed just yet?",
+                            "C'mon; act more alive!"
                         },
                         "Say Hello once more"
                     )
@@ -106,7 +115,209 @@ namespace BlueHeaven.src.Enums
                 },
                 new List<IProvideCondition>
                 {
-                })
+                }),
+            #endregion
+            #region Will you be the true you?
+            new Conversation(
+                ConversationCode.WillYouBeTheTrueYou,
+                new List<IConversationLine> {
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "Well! I've always known you were with me.",
+                            "After all, who wants to be like that stickler over there?",
+                            "Since you've picked me this time,",
+                            "let me be your guide!"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "Wait.",
+                            "Are you sure you want that...thing to guide you?",
+                            "Haven't you seen how unreliable she is?"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "Ah...! It's that annoying guy again.",
+                            "Do you really wanna listen to his nonsensical rambling?",
+                            "...You don't!!",
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "So that is what you have chosen...",
+                            "Fare thee well, anonymous traveller..."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "Let's go!!"
+                        }
+                    )
+                },
+                new List<IProvideCondition>
+                {
+                    new SentimentCondition(CharacterCode.Mochi,30,CharacterCode.Player),
+                    new ConversationCondition(ConversationCode.AnotherGreeting)
+                },
+                new List<IProvideCondition>
+                {
+                },
+                MilestoneCode.WhoIsYourGuide),
+            #endregion
+            #region You have been good
+            new Conversation(
+                ConversationCode.YouHaveBeenGood,
+                new List<IConversationLine> {
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "...Is that it? This is your choice?",
+                            "Why are you acting like this??",
+                            "This isn't you! You aren't like..."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "Silent."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "...tha...zzz..."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "And that annoying fly has finally stopped yapping.",
+                            "Doesn't it make you feel better?",
+                            "Why act in such a manner when you can be perfect?",
+                            "Listen to me, stay calm and composed.",
+                            "That is how I will take you through this game."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "With perfection."
+                        }
+                    )
+                },
+                new List<IProvideCondition>
+                {
+                    new SentimentCondition(CharacterCode.KingCrab,20,CharacterCode.Player),
+                    new ConversationCondition(ConversationCode.AnotherGreeting)
+                },
+                new List<IProvideCondition>
+                {
+                },
+                MilestoneCode.WhoIsYourGuide),
+            #endregion
+            #region Who are you?
+            new Conversation(
+                ConversationCode.WhoAreYou,
+                new List<IConversationLine> {
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "...",
+                            "So this..."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "...is interesting."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "Gah! Get away from me!!",
+                            "Omg, this person is too annoying!",
+                            "Why are we even in the same room??",
+                            "Get out! Get out! Get outttttt!!"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "Yada yada.",
+                            "If anyone has to leave it's you.",
+                            "I can't bear your very existence either.",
+                            "Why don't you just go and die?"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "Oh I could say the same to you! Go die!!"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "Ugh, how childish! But anyway",
+                            "We are here together because you have chosen so.",
+                            "Are you satisfied? We will forever stay in conflict.",
+                            "But both of us will be your guide."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "And soon enough you will realize who is the better one.",
+                            "And the other one will have no rights to exist at all. Kekeke~"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "Spelling your own future, how smart of you.",
+                            "Could this be the first time ever that you actually use your brain?",
+                            "I commend your effort, trash."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "YOU are the trash! Get OUTTTTT!!!!"
+                        }
+                    ),
+                    new ConversationLine(
+                        "Crab King Tester 2",
+                        new List<string> {
+                            "Disregarding that annoying yapping,",
+                            "you have chosen the path in between.",
+                            "It is going to be difficult with both of us here."
+                        }
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "But at the same time, there are endless possibilities.",
+                            "So, who will you become?"
+                        }
+                    )
+                },
+                new List<IProvideCondition>
+                {
+                    new SentimentCondition(CharacterCode.KingCrab,10,CharacterCode.Player),
+                    new SentimentCondition(CharacterCode.Mochi,25,CharacterCode.Player),
+                    new ConversationCondition(ConversationCode.AnotherGreeting)
+                },
+                new List<IProvideCondition>
+                {
+                },
+                MilestoneCode.WhoIsYourGuide)
             #endregion
             // Next conversation?
         };

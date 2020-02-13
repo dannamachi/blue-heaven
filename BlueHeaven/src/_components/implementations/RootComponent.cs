@@ -6,6 +6,7 @@ using BlueHeaven.src.Components.Title;
 using BlueHeaven.src.Components.Help;
 using BlueHeaven.src.Components.Credits;
 using BlueHeaven.src.Data;
+using BlueHeaven.src.Data.Package;
 using BlueHeaven.src.Graphic;
 using BlueHeaven.src.Enums;
 using Microsoft.Xna.Framework.Graphics;
@@ -45,7 +46,7 @@ namespace BlueHeaven.src.Components
         {
             // add component builders
             _components = new List<IGameComponent>();
-            _components.Add(new StoryComponent(StoryBuilder.GetPackage(""), GraphicBuilder.GetGraphics("Story"), sbatch));
+            _components.Add(new StoryComponent(GraphicBuilder.GetGraphics("Story"), sbatch));
             _components.Add(new ChoiceComponent(GraphicBuilder.GetGraphics("Choice"), sbatch));
             _components.Add(new NavigationComponent(GraphicBuilder.GetGraphics("Navigation"), _router, sbatch));
             _components.Add(new TitleComponent(GraphicBuilder.GetGraphics("Title"), _router, sbatch));
@@ -68,12 +69,20 @@ namespace BlueHeaven.src.Components
         /// </summary>
         private void LoadGame()
         {
-            // add game builder
+            // current package set to Test
+            PackageCode currPackage = PackageCode.Test;
+            // add package loader
             _gameState = new GameState();
+            PackageBuilder.LoadPackage(_gameState, currPackage);
             // set up all initial active
+            // load component specific package data
             foreach (IGameComponent component in _components)
             {
                 if (component.IsActive) component.Setup(_gameState);
+                if (component is StoryComponent)
+                {
+                    PackageBuilder.LoadConversation(component as StoryComponent, currPackage);
+                }
             }
         }
 

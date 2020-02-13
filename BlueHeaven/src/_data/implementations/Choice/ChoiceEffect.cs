@@ -1,4 +1,5 @@
 using BlueHeaven.src.Data;
+using BlueHeaven.src.Enums;
 namespace BlueHeaven.src.Data.Choice
 {
     // data: object that gives change to character
@@ -13,15 +14,15 @@ namespace BlueHeaven.src.Data.Choice
     }
     public class ChoiceEffect : IAffectCharacter
     {
-        private string _character, _towardsCharacter;
+        private CharacterCode _character, _towardsCharacter;
         private SentimentEffect _effect;
-        public ChoiceEffect(string character, SentimentEffect sentimentEffect, string towardsCharacter)
+        public ChoiceEffect(CharacterCode character, SentimentEffect sentimentEffect, CharacterCode towardsCharacter)
         {
             _character = character;
             _towardsCharacter = towardsCharacter;
             _effect = sentimentEffect;
         }
-        public string AffectWho { get => _character; }
+        public CharacterCode AffectWho { get => _character; }
         public void GiveEffect(ICharacter character)
         {
             // cancel if character is null/not applicable
@@ -32,10 +33,7 @@ namespace BlueHeaven.src.Data.Choice
             if (_effect == 0) character.SentimentTowards(_towardsCharacter).IsRomantic = true;
             else
             {
-                if (_effect > 0)
-                    character.SentimentTowards(_towardsCharacter).IncreaseBy((int)_effect);
-                else
-                    character.SentimentTowards(_towardsCharacter).DecreaseBy((int)_effect);
+                character.SentimentTowards(_towardsCharacter).IncreaseBy((int)_effect);
             }
         }
     }

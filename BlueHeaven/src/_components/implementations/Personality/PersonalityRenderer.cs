@@ -80,33 +80,27 @@ namespace BlueHeaven.src.Components.Personality
             {
                 UpdateAlternateState(gameState.EditingCharacter.IsOfPersonality);
                 foreach (IGraphicObject obj in _buttons) { obj.Draw(_sbatch); }
+                CommonUtilities.DrawFont(
+                    gameState.EditingCharacter.Name + "'s stats:",
+                    FontEnum.Font20,
+                    CommonUtilities.GetPositionFromInt(GraphicDimension.EditingTitle),
+                    Color.Black,
+                    _sbatch);
             }
             // draw greyed overlay if unable to edit
             if (!gameState.Editable)
             {
                 _overlay.Draw(_sbatch);
                 CommonUtilities.DrawFont(
-                    "Are you looking for something?",
+                    "This function is not available now.",
                     FontEnum.Font20,
-                    CommonUtilities.GetPositionFromInt(GraphicDimension.ToggleButton1),
-                    Color.Black,
-                    _sbatch);
-
-            }
-
-            // DEBUG
-            if (gameState.EditingCharacter != null)
-            {
-                CommonUtilities.DrawFont(
-                    gameState.EditingCharacter.IsOfPersonality.ToString(),
-                    FontEnum.Font20,
-                    new Vector2(50,50),
+                    CommonUtilities.GetPositionFromInt(GraphicDimension.EditingTitle),
                     Color.Black,
                     _sbatch);
                 CommonUtilities.DrawFont(
-                    gameState.EditingCharacter.Name,
+                    "Please try again later.",
                     FontEnum.Font20,
-                    new Vector2(100, 100),
+                    CommonUtilities.GetPositionFromInt(GraphicDimension.EditingTitle1),
                     Color.Black,
                     _sbatch);
             }

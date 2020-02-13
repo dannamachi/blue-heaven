@@ -101,9 +101,6 @@ namespace BlueHeaven.src.Data
             }
         }
 
-        // TO REMOVE: changing which parameter of personality
-        public int EditingIndex { get; set; }
-
         /// <summary>
         /// Get bool if editing is allowed at current conversation
         /// </summary>

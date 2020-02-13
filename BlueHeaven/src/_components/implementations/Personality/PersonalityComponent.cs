@@ -14,20 +14,26 @@ namespace BlueHeaven.src.Components.Personality
         private List<IGraphicObject> _objects;
         public PersonalityComponent(List<IGraphicObject> objects, SpriteBatch sbatch)
         {
-            _processor = new PersonalityProcessor(objects);
+            _processor = new PersonalityProcessor();
             _updater = new PersonalityUpdater();
             _renderer = new PersonalityRenderer(objects,sbatch);
             IsActive = true;
+            RefreshActive();
         }
         public void Setup(IGameState gameState)
         {
-
+            _processor.RefreshService();
+        }
+        public void RefreshActive()
+        {
+            _processor.Activated = true;
         }
         public bool IsActive { get; set; }
-        public string ActiveUnderState { get => "Editing"; }
+        public string ActiveUnderState { get => "Setting"; }
         public void ProcessInput(IGameState gameState)
         {
             _processor.Process(gameState);
+            _updater.EditingIndex = _processor.EditingIndex;
         }
         public void Update(IGameState gameState)
         {

@@ -25,7 +25,7 @@ namespace BlueHeaven.src.Components.Navigation
                     _router.RouteTo("Reading");
                     break;
                 case 2:
-                    _router.RouteTo("Editing");
+                    _router.RouteTo("Setting");
                     break;
             }
             CurrentState = _router.CurrentState.Name;

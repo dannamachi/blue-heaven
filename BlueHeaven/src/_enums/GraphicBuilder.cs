@@ -125,19 +125,27 @@ namespace BlueHeaven.src.Enums
         private static List<IGraphicObject> GetGraphicForPersonality()
         {
             List<IGraphicObject> graphics = new List<IGraphicObject>();
+            // frame
+            graphics.Add(new GraphicObject("EditingFrame",
+                new GraphicRectangle(_graphics, GraphicDimension.EditingFrame, Color.LightCoral),
+                null));
             // 4 sharp-edged rectangles, grey blue (ToggleButton1...4)  
             graphics.Add(new GraphicObject("ToggleButton1",
                 new GraphicRectangle(_graphics, GraphicDimension.ToggleButton1, Color.DarkOliveGreen),
-                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton1, Color.ForestGreen)));
+                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton1, Color.Gold)));
             graphics.Add(new GraphicObject("ToggleButton2",
                 new GraphicRectangle(_graphics, GraphicDimension.ToggleButton2, Color.DarkOliveGreen),
-                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton2, Color.ForestGreen)));
+                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton2, Color.Gold)));
             graphics.Add(new GraphicObject("ToggleButton3",
                 new GraphicRectangle(_graphics, GraphicDimension.ToggleButton3, Color.DarkOliveGreen),
-                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton3, Color.ForestGreen)));
+                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton3, Color.Gold)));
             graphics.Add(new GraphicObject("ToggleButton4",
                 new GraphicRectangle(_graphics, GraphicDimension.ToggleButton4, Color.DarkOliveGreen),
-                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton4, Color.ForestGreen)));
+                new GraphicRectangle(_graphics, GraphicDimension.ToggleButton4, Color.Gold)));
+            // overlay
+            graphics.Add(new GraphicObject("Overlay",
+                new GraphicRectangle(_graphics, GraphicDimension.EditingFrame, Color.MediumPurple),
+                null));
             return graphics;
         }
 

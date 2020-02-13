@@ -31,7 +31,9 @@ namespace BlueHeaven.src.Enums
                 },
                 new Dictionary<ConversationCode, CharacterCode>
                 {
-                    { ConversationCode.WelcomeToBlueHeaven,CharacterCode.Player }
+                    { ConversationCode.WelcomeToBlueHeaven,CharacterCode.Player },
+                    { ConversationCode.AnotherGreeting,CharacterCode.Mochi },
+                    { ConversationCode.WhoAreYou,CharacterCode.Player }
                 })
             #endregion
         };

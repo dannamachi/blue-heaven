@@ -18,6 +18,7 @@ namespace BlueHeaven.src.Components.Story
             Choosing = false;
             Finished = false;
             DetectChangeLine = false;
+            NewConversation = false;
         }
 
         public void SetConversations(List<ConversationCode> codes)
@@ -66,7 +67,11 @@ namespace BlueHeaven.src.Components.Story
                 IConversation fetched = StoryBuilder.GetConversation(code);
                 if (fetched != null)
                 {
-                    if (fetched.CanBeRead(gameState)) return fetched;
+                    if (fetched.CanBeRead(gameState))
+                    {
+                        NewConversation = true;
+                        return fetched;
+                    }
                 }
             }
             return null;
@@ -78,6 +83,7 @@ namespace BlueHeaven.src.Components.Story
         /// <param name="gameState"></param>
         public void Update(IGameState gameState)
         {
+            if (NewConversation) NewConversation = false;
             // update convo
             if (gameState.Conversation == null)
             {
@@ -121,5 +127,7 @@ namespace BlueHeaven.src.Components.Story
         public bool Choosing { get; set; }
 
         public bool Finished { get; set; }
+
+        public bool NewConversation { get; set; }
     }
 }

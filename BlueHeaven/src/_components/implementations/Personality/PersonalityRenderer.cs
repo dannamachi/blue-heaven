@@ -4,6 +4,9 @@ using BlueHeaven.src.Components;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Graphic;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using BlueHeaven.src.Enums;
+
 namespace BlueHeaven.src.Components.Personality
 {
     /// <summary>
@@ -13,19 +16,24 @@ namespace BlueHeaven.src.Components.Personality
     {
         private List<IGraphicObject> _objects;
         private List<IGraphicObject> _buttons;
+        private IGraphicObject _overlay;
         private SpriteBatch _sbatch;
         public PersonalityRenderer(List<IGraphicObject> objects, SpriteBatch sbatch)
         {
             _sbatch = sbatch;
-            string[] toggleButtons = new string[] { "EditToggle1", "EditToggle2", "EditToggle3", "EditToggle4" };
+            string[] toggleButtons = new string[] { "ToggleButton1", "ToggleButton2", "ToggleButton3", "ToggleButton4" };
             _objects = new List<IGraphicObject>();
             _buttons = new List<IGraphicObject>();
-            foreach (IGraphicObject object1 in _objects)
+            foreach (IGraphicObject object1 in objects)
             {
-                for (int i = 0; i < toggleButtons.Length; i++)
+                if (object1.IsCalled("Overlay")) { _overlay = object1; }
+                else
                 {
-                    if (!object1.IsCalled(toggleButtons[i])) { _objects.Add(object1); break; }
-                    else { _buttons.Add(object1); break; }
+                    for (int i = 0; i < toggleButtons.Length; i++)
+                    {
+                        if (object1.IsCalled(toggleButtons[i])) { _buttons.Add(object1); break; }
+                        else { _objects.Add(object1); }
+                    }
                 }
             }
         }
@@ -66,17 +74,41 @@ namespace BlueHeaven.src.Components.Personality
         /// <param name="gameState"></param>
         public void Draw(IGameState gameState)
         {
-            // draw greyed overlay if unable to edit
-            if (!gameState.Editable)
-            {
-
-            }
             // draw content when there is character to edit
             foreach (IGraphicObject obj in _objects) { obj.Draw(_sbatch); }
             if (gameState.EditingCharacter != null)
             {
                 UpdateAlternateState(gameState.EditingCharacter.IsOfPersonality);
                 foreach (IGraphicObject obj in _buttons) { obj.Draw(_sbatch); }
+            }
+            // draw greyed overlay if unable to edit
+            if (!gameState.Editable)
+            {
+                _overlay.Draw(_sbatch);
+                CommonUtilities.DrawFont(
+                    "Are you looking for something?",
+                    FontEnum.Font20,
+                    CommonUtilities.GetPositionFromInt(GraphicDimension.ToggleButton1),
+                    Color.Black,
+                    _sbatch);
+
+            }
+
+            // DEBUG
+            if (gameState.EditingCharacter != null)
+            {
+                CommonUtilities.DrawFont(
+                    gameState.EditingCharacter.IsOfPersonality.ToString(),
+                    FontEnum.Font20,
+                    new Vector2(50,50),
+                    Color.Black,
+                    _sbatch);
+                CommonUtilities.DrawFont(
+                    gameState.EditingCharacter.Name,
+                    FontEnum.Font20,
+                    new Vector2(100, 100),
+                    Color.Black,
+                    _sbatch);
             }
         }
     }

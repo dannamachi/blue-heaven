@@ -10,5 +10,6 @@ namespace BlueHeaven.src.Data
         bool HasSentimentTowards(CharacterCode charCode);
         bool IsBroken { get; }
         void TogglePersonality(int num);
+        string Name { get; }
     }
 }

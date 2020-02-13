@@ -8,12 +8,12 @@ namespace BlueHeaven.src.Data
     public class Character : ICharacter
     {
         private int _changeCount;
-        private string _name;
+        private CharacterCode _code;
         private int _personality;
-        private Dictionary<string, ISentiment> _senDict;
-        public Character(string name, Dictionary<string, ISentiment> sentiments, Personality initial = Personality.Arianne)
+        private Dictionary<CharacterCode, ISentiment> _senDict;
+        public Character(CharacterCode code, Dictionary<CharacterCode, ISentiment> sentiments, Personality initial = Personality.Arianne)
         {
-            _name = name;
+            _code = code;
             _personality = (int)initial;
             _senDict = sentiments;
             _changeCount = 0;
@@ -76,9 +76,9 @@ namespace BlueHeaven.src.Data
                     break;
             }
         }
-        public bool IsCalled(string name)
+        public bool IsCalled(CharacterCode charCode)
         {
-            return name.Trim() == _name.Trim();
+            return _code == charCode;
         }
         public bool IsBroken
         {
@@ -99,13 +99,13 @@ namespace BlueHeaven.src.Data
                 _personality = value;
             }
         }
-        public ISentiment SentimentTowards(string name)
+        public ISentiment SentimentTowards(CharacterCode code)
         {
-            return _senDict[name];
+            return _senDict[code];
         }
-        public bool HasSentimentTowards(string name)
+        public bool HasSentimentTowards(CharacterCode code)
         {
-            return _senDict.ContainsKey(name);
+            return _senDict.ContainsKey(code);
         }
     }
 }

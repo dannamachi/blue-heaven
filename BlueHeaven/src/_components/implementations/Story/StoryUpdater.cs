@@ -19,6 +19,11 @@ namespace BlueHeaven.src.Components.Story
             Finished = false;
             DetectChangeLine = false;
         }
+
+        public void SetConversations(List<ConversationCode> codes)
+        {
+            _conversations = codes;
+        }
         
         /// <summary>
         /// Get next conversation or switch to choosing
@@ -30,9 +35,16 @@ namespace BlueHeaven.src.Components.Story
             // switch to choice if have choice
             if (gameState.Conversation.HaveChoice)
             {
-                Choosing = true;
-                if (gameState.Conversation.CanChoose(gameState)) gameState.ChoiceDispenser = gameState.Conversation.GetChoiceDispenser;
-                else return GetConversation(gameState);
+                if (gameState.Conversation.CanChoose(gameState))
+                {
+                    gameState.ChoiceDispenser = gameState.Conversation.GetChoiceDispenser;
+                    Choosing = true;
+                }
+                else
+                {
+                    Choosing = false;
+                    return GetConversation(gameState);
+                }
             }
             // else get next readable conversation
             else
@@ -77,12 +89,17 @@ namespace BlueHeaven.src.Components.Story
                 }
             }
             // update line
-            if (CurrentLine.IsFinished && !Finished)
+            if (CurrentLine == null) Finished = true;
+            else if (CurrentLine.IsFinished && !Finished)
             {
                 DetectChangeLine = true;
-                if (gameState.Conversation.IsFinished)
+                if (gameState.Conversation == null)
                 {
-                    gameState.FinishedConversations.Add(gameState.Conversation);
+                    Finished = true;
+                }
+                else if (gameState.Conversation.IsFinished)
+                {
+                    gameState.FinishConversation(gameState.Conversation);
                     gameState.Conversation = GetNextConversation(gameState);
                 }
                 else

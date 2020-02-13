@@ -9,8 +9,16 @@ namespace BlueHeaven.src.Enums
     public enum ChoiceDispenserCode
     {
         None,
-        SayHelloOrNah
+        SayHelloOrNah,
+        WarCry
     }
+
+    // Romance = 0,
+    // Up = 5,
+    // UpTwice = 10,
+    // Down = -5,
+    // DownTwice = -10,
+    // DownAll = -60
 
     /// <summary>
     /// Container of choices
@@ -27,13 +35,35 @@ namespace BlueHeaven.src.Enums
                     "Say Hello",
                     new List<IAffectCharacter>{
                         new ChoiceEffect(
-                            "Mochi",SentimentEffect.Up,"Player"
+                            CharacterCode.Mochi,SentimentEffect.Up,CharacterCode.Player
                         )
                     }),
                 new Choice(
                     "Ignore",
                     new List<IAffectCharacter>{
-
+                        new ChoiceEffect(
+                            CharacterCode.KingCrab,SentimentEffect.Up,CharacterCode.Player
+                        )
+                    })
+                }),
+            #endregion
+            #region War Cry
+            new ChoiceDispenser(
+                ChoiceDispenserCode.WarCry,
+                new List<IChoice> {
+                new Choice(
+                    "Flare up",
+                    new List<IAffectCharacter>{
+                        new ChoiceEffect(
+                            CharacterCode.Mochi,SentimentEffect.Up,CharacterCode.Player
+                        )
+                    }),
+                new Choice(
+                    "Glare back coolly",
+                    new List<IAffectCharacter>{
+                        new ChoiceEffect(
+                            CharacterCode.KingCrab,SentimentEffect.UpTwice,CharacterCode.Player
+                        )
                     })
                 })
             #endregion

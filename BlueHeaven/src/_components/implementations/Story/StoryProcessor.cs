@@ -31,8 +31,12 @@ namespace BlueHeaven.src.Components.Story
             _clicking.SnapShot();
             if (_clicking.IsClicked(GraphicDimension.StoryFrame)) NextLine = true;
             else NextLine = false;
+
+            if (Finished) NextLine = false;
         }
 
         public bool NextLine { get; set; }
+
+        public bool Finished { get; set; }
     }
 }

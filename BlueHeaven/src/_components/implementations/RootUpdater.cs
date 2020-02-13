@@ -2,15 +2,18 @@ using System.Collections.Generic;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Components.Story;
 using BlueHeaven.src.Components.Choice;
+using BlueHeaven.src.Components.Personality;
 namespace BlueHeaven.src.Components
 {
     // updater: updates all (active) components
     public class RootUpdater : IComponentUpdater
     {
         private IRoute _router;
+        private bool _refreshEditing;
         public RootUpdater(IRoute router)
         {
             _router = router;
+            _refreshEditing = false;
         }
 
         public void Update(List<IGameComponent> components, IGameState gameState)
@@ -34,6 +37,7 @@ namespace BlueHeaven.src.Components
                             _router.RouteTo("Reading/Choosing");
                             _router.SetRedirect("Reading", 1);
                         }
+                        _refreshEditing = (component as StoryComponent).NewConversation;
                     }
                 }
                 if (component is ChoiceComponent)
@@ -46,6 +50,10 @@ namespace BlueHeaven.src.Components
                             _router.SetRedirect("Reading", 0);
                         }
                     }
+                }
+                if (component is PersonalityComponent)
+                {
+                    if (_refreshEditing) (component as PersonalityComponent).RefreshActive();
                 }
                 // setup if reactivated
                 if (component.IsActive && !previousActiveState) component.Setup(gameState);

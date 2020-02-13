@@ -57,9 +57,6 @@ namespace BlueHeaven.src.Data
         /// </summary>
         ICharacter EditingCharacter { get; }
 
-        // TO REMOVE: changing which parameter of personality
-        int EditingIndex { get; set; }
-
         /// <summary>
         /// Get bool if editing is allowed at current conversation
         /// </summary>

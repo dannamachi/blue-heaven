@@ -8,10 +8,11 @@ namespace BlueHeaven.src.Components.Personality
         public PersonalityUpdater() { }
         public void Update(IGameState gameState)
         {
-            if (gameState.EditingIndex != 0)
+            if (gameState.Editable && EditingIndex != 0)
             {
-                gameState.EditingCharacter.TogglePersonality(gameState.EditingIndex);
+                gameState.EditingCharacter.TogglePersonality(EditingIndex);
             }
         }
+        public int EditingIndex { get; set; }
     }
 }

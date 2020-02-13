@@ -32,6 +32,8 @@ namespace BlueHeaven.src.Components.Story
             _updater.SetConversations(convos);
         }
 
+        public bool NewConversation { get => _updater.NewConversation; }
+
         /// <summary>
         /// Call when story is resumed
         /// </summary>

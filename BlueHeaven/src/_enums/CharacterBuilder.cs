@@ -16,6 +16,18 @@ namespace BlueHeaven.src.Enums
     /// </summary>
     public class CharacterBuilder
     {
+        private static Dictionary<CharacterCode, string> _nameDict = new Dictionary<CharacterCode, string>
+        {
+            { CharacterCode.Player,"Player" },
+            { CharacterCode.Mochi,"Mochi Tester" },
+            { CharacterCode.KingCrab,"Crab King" }
+        };
+
+        public static string GetName(CharacterCode code)
+        {
+            if (_nameDict.ContainsKey(code)) return _nameDict[code];
+            else return "A stranger";
+        }
         public static List<ICharacter> GetCharacters(List<CharacterCode> charCodes)
         {
             List<ICharacter> charList = new List<ICharacter>();

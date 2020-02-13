@@ -87,6 +87,10 @@ namespace BlueHeaven.src.Data
                 return IsOfPersonality == 0;
             }
         }
+        public string Name
+        {
+            get => CharacterBuilder.GetName(_code);
+        }
         public int IsOfPersonality
         {
             get

@@ -46,7 +46,8 @@ namespace BlueHeaven.src.Enums
         public static readonly int[] NavigationTextSetting = new int[] { 610, 310, 180, 180 };
         // personality component
         public static readonly int[] EditingFrame = new int[] { 50, 50, 350, 500 };
-        public static readonly int[] InactiveOverlay = new int[] { 75, 75, 300, 450 };
+        public static readonly int[] EditingTitle = new int[] { 70, 70, 300, 30 };
+        public static readonly int[] EditingTitle1 = new int[] { 70, 120, 300, 30 };
         public static readonly int[] ToggleButton1 = new int[] { 125, 125, 200, 50 };
         public static readonly int[] ToggleButton2 = new int[] { 125, 225, 200, 50 };
         public static readonly int[] ToggleButton3 = new int[] { 125, 325, 200, 50 };

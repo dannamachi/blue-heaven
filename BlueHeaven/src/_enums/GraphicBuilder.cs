@@ -7,7 +7,7 @@ namespace BlueHeaven.src.Enums
     /// <summary>
     /// Builder for graphic objects
     /// </summary>
-    public class GraphicBuilder
+    public partial class GraphicBuilder
     {
         private static GraphicsDevice _graphics;
         private static Dictionary<string, List<IGraphicObject>> _graphicDict = new Dictionary<string, List<IGraphicObject>>();

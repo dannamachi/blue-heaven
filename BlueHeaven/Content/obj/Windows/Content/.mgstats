@@ -1,2 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/fonts/File.spritefont","D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/bin/Windows/Content/fonts/Generic.xnb","FontDescriptionProcessor","SpriteFontContent",2008,37905,1.967441
+"D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/CrazyKing.png","D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/bin/Windows/Content/graphics/CrazyKing.xnb","TextureProcessor","Texture2DContent",60190,262229,0.7237777
+"D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/KingCrab.png","D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/bin/Windows/Content/graphics/KingCrab.xnb","TextureProcessor","Texture2DContent",6615,155885,0.0149662
+"D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/Mochi.png","D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/bin/Windows/Content/graphics/Mochi.xnb","TextureProcessor","Texture2DContent",355143,13368085,0.7532871
+"D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/MochiCrazy.png","D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/bin/Windows/Content/graphics/MochiCrazy.xnb","TextureProcessor","Texture2DContent",64583,1055109,0.093242

@@ -6,6 +6,7 @@ using BlueHeaven.src.Components.Title;
 using BlueHeaven.src.Components.Help;
 using BlueHeaven.src.Components.Credits;
 using BlueHeaven.src.Components.Personality;
+using BlueHeaven.src.Components.Graphic;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Data.Package;
 using BlueHeaven.src.Graphic;
@@ -54,6 +55,7 @@ namespace BlueHeaven.src.Components
             _components.Add(new HelpComponent(GraphicBuilder.GetGraphics("Info"), sbatch));
             _components.Add(new CreditsComponent(GraphicBuilder.GetGraphics("Info"), sbatch));
             _components.Add(new PersonalityComponent(GraphicBuilder.GetGraphics("Personality"), sbatch));
+            _components.Add(new GraphicComponent(sbatch));
             // initial active status
             foreach (IGameComponent component in _components)
             {
@@ -64,6 +66,7 @@ namespace BlueHeaven.src.Components
                 if (component is HelpComponent) component.IsActive = false;
                 if (component is CreditsComponent) component.IsActive = false;
                 if (component is PersonalityComponent) component.IsActive = false;
+                if (component is GraphicComponent) component.IsActive = true;
             }
         }
 

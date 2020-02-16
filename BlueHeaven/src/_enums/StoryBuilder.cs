@@ -16,6 +16,26 @@ namespace BlueHeaven.src.Enums
         WhoAreYou
     }
 
+    /// <summary>
+    /// Code for graphic
+    /// </summary>
+    public enum StoryGraphicCode
+    {
+        Default,
+        Mochi,
+        KingCrab,
+        MochiCrazy,
+        CrazyKing
+    }
+
+    public enum BackgroundCode
+    {
+        Default
+    }
+
+    /// <summary>
+    /// Code for story milestone (divergence)
+    /// </summary>
     public enum MilestoneCode
     {
         None,
@@ -81,7 +101,7 @@ namespace BlueHeaven.src.Enums
                             "Hope you are ready for some great fun!",
                             "This will be the greatest game ever!!"
                         },
-                        "Hello from the tester"),
+                        StoryGraphicCode.Mochi),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
@@ -89,7 +109,8 @@ namespace BlueHeaven.src.Enums
                             "Aren't you a poor little cutie?",
                             "So bored that you'd resort to playing this xDDD",
                             "So the game is called Blue Heaven...let's begin!"
-                        })
+                        },
+                        StoryGraphicCode.Mochi)
                 }),
             #endregion
             #region Another Greeting
@@ -106,7 +127,7 @@ namespace BlueHeaven.src.Enums
                             "I'm trying my best; are you annoyed just yet?",
                             "C'mon; act more alive!"
                         },
-                        "Say Hello once more"
+                        StoryGraphicCode.Mochi
                     )
                 },
                 new List<IProvideCondition>
@@ -128,7 +149,8 @@ namespace BlueHeaven.src.Enums
                             "After all, who wants to be like that stickler over there?",
                             "Since you've picked me this time,",
                             "let me be your guide!"
-                        }
+                        },
+                        StoryGraphicCode.Mochi
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
@@ -136,28 +158,38 @@ namespace BlueHeaven.src.Enums
                             "Wait.",
                             "Are you sure you want that...thing to guide you?",
                             "Haven't you seen how unreliable she is?"
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "Ah...! It's that annoying guy again.",
-                            "Do you really wanna listen to his nonsensical rambling?",
-                            "...You don't!!",
-                        }
+                            "Do you really wanna listen to his nonsensical rambling?"
+                        },
+                        StoryGraphicCode.Mochi
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string> {
+                            "...You don't!!"
+                        },
+                        StoryGraphicCode.MochiCrazy
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
                         new List<string> {
                             "So that is what you have chosen...",
                             "Fare thee well, anonymous traveller..."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
-                            "Let's go!!"
-                        }
+                            "Let's go!!!"
+                        },
+                        StoryGraphicCode.Mochi
                     )
                 },
                 new List<IProvideCondition>
@@ -178,21 +210,31 @@ namespace BlueHeaven.src.Enums
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "...Is that it? This is your choice?",
-                            "Why are you acting like this??",
+                            "Why are you acting like this??"
+                        },
+                        StoryGraphicCode.Mochi
+                    ),
+                    new ConversationLine(
+                        "Pink Mochi Tester 103",
+                        new List<string>
+                        {
                             "This isn't you! You aren't like..."
-                        }
+                        },
+                        StoryGraphicCode.MochiCrazy
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
                         new List<string> {
                             "Silent."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "...tha...zzz..."
-                        }
+                        },
+                        StoryGraphicCode.MochiCrazy
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
@@ -202,13 +244,15 @@ namespace BlueHeaven.src.Enums
                             "Why act in such a manner when you can be perfect?",
                             "Listen to me, stay calm and composed.",
                             "That is how I will take you through this game."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
                         new List<string> {
                             "With perfection."
-                        }
+                        },
+                        StoryGraphicCode.CrazyKing
                     )
                 },
                 new List<IProvideCondition>
@@ -230,13 +274,15 @@ namespace BlueHeaven.src.Enums
                         new List<string> {
                             "...",
                             "So this..."
-                        }
+                        },
+                        StoryGraphicCode.Mochi
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
                         new List<string> {
                             "...is interesting."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
@@ -245,7 +291,8 @@ namespace BlueHeaven.src.Enums
                             "Omg, this person is too annoying!",
                             "Why are we even in the same room??",
                             "Get out! Get out! Get outttttt!!"
-                        }
+                        },
+                        StoryGraphicCode.MochiCrazy
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
@@ -254,13 +301,15 @@ namespace BlueHeaven.src.Enums
                             "If anyone has to leave it's you.",
                             "I can't bear your very existence either.",
                             "Why don't you just go and die?"
-                        }
+                        },
+                        StoryGraphicCode.CrazyKing
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "Oh I could say the same to you! Go die!!"
-                        }
+                        },
+                        StoryGraphicCode.MochiCrazy
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
@@ -269,14 +318,16 @@ namespace BlueHeaven.src.Enums
                             "We are here together because you have chosen so.",
                             "Are you satisfied? We will forever stay in conflict.",
                             "But both of us will be your guide."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "And soon enough you will realize who is the better one.",
                             "And the other one will have no rights to exist at all. Kekeke~"
-                        }
+                        },
+                        StoryGraphicCode.Mochi
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
@@ -284,13 +335,15 @@ namespace BlueHeaven.src.Enums
                             "Spelling your own future, how smart of you.",
                             "Could this be the first time ever that you actually use your brain?",
                             "I commend your effort, trash."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "YOU are the trash! Get OUTTTTT!!!!"
-                        }
+                        },
+                        StoryGraphicCode.MochiCrazy
                     ),
                     new ConversationLine(
                         "Crab King Tester 2",
@@ -298,14 +351,16 @@ namespace BlueHeaven.src.Enums
                             "Disregarding that annoying yapping,",
                             "you have chosen the path in between.",
                             "It is going to be difficult with both of us here."
-                        }
+                        },
+                        StoryGraphicCode.KingCrab
                     ),
                     new ConversationLine(
                         "Pink Mochi Tester 103",
                         new List<string> {
                             "But at the same time, there are endless possibilities.",
                             "So, who will you become?"
-                        }
+                        },
+                        StoryGraphicCode.Mochi
                     )
                 },
                 new List<IProvideCondition>

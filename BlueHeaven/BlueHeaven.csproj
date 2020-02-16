@@ -53,6 +53,10 @@
     <Compile Include="src\_components\implementations\Credits\CreditsRenderer.cs" />
     <Compile Include="src\_components\implementations\Credits\CreditsUpdater.cs" />
     <Compile Include="src\_components\implementations\GameRouter.cs" />
+    <Compile Include="src\_components\implementations\Graphic\GraphicComponent.cs" />
+    <Compile Include="src\_components\implementations\Graphic\GraphicProcessor.cs" />
+    <Compile Include="src\_components\implementations\Graphic\GraphicRenderer.cs" />
+    <Compile Include="src\_components\implementations\Graphic\GraphicUpdater.cs" />
     <Compile Include="src\_components\implementations\Help\HelpComponent.cs" />
     <Compile Include="src\_components\implementations\Help\HelpProcessor.cs" />
     <Compile Include="src\_components\implementations\Help\HelpRenderer.cs" />
@@ -93,6 +97,7 @@
     <Compile Include="src\_data\implementations\GameState.cs" />
     <Compile Include="src\_data\implementations\Package\GamePackage.cs" />
     <Compile Include="src\_data\interfaces\IPackage.cs" />
+    <Compile Include="src\_enums\ExtendedGraphicBuilder.cs" />
     <Compile Include="src\_enums\PackageBuilder.cs" />
     <Compile Include="src\_data\implementations\Sentiment.cs" />
     <Compile Include="src\_data\implementations\StateBeacon.cs" />
@@ -121,6 +126,7 @@
     <Compile Include="src\_enums\Personality.cs" />
     <Compile Include="src\_enums\StoryBuilder.cs" />
     <Compile Include="src\_graphic\implementations\GraphicObject.cs" />
+    <Compile Include="src\_graphic\implementations\GraphicSprite.cs" />
     <Compile Include="src\_graphic\interfaces\IGraphicObject.cs" />
     <Compile Include="src\_graphic\interfaces\IShape.cs" />
     <Compile Include="src\_graphic\implementations\GraphicRectangle.cs" />

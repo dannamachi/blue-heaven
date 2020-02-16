@@ -50,8 +50,20 @@ namespace BlueHeaven
             {
                 Content.Load<SpriteFont>("fonts/Generic")
             };
+            Dictionary<StoryGraphicCode, Texture2D> storyGraphics = new Dictionary<StoryGraphicCode, Texture2D>
+            {
+                { StoryGraphicCode.Mochi, Content.Load<Texture2D>("graphics/Mochi") },
+                { StoryGraphicCode.MochiCrazy, Content.Load<Texture2D>("graphics/MochiCrazy") },
+                { StoryGraphicCode.KingCrab, Content.Load<Texture2D>("graphics/KingCrab") },
+                { StoryGraphicCode.CrazyKing, Content.Load<Texture2D>("graphics/CrazyKing") }
+            };
+            Dictionary<BackgroundCode, Texture2D> bgs = new Dictionary<BackgroundCode, Texture2D>
+            {
+
+            };
 
             // TODO: use this.Content to load your game content here
+            GraphicBuilder.LoadExternalGraphic(storyGraphics, bgs);
             GameFonts.LoadFonts(fontList);
             GraphicBuilder.BuildObjects(GraphicsDevice);
             _root = new RootComponent(GraphicsDevice, spriteBatch);

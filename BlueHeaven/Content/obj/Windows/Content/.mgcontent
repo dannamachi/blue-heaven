@@ -5,8 +5,16 @@
   <Config />
   <SourceFiles>
     <File>D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/fonts/File.spritefont</File>
+    <File>D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/CrazyKing.png</File>
+    <File>D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/KingCrab.png</File>
+    <File>D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/Mochi.png</File>
+    <File>D:/GamesDev/BlueHeavenG/BlueHeaven/BlueHeaven/Content/graphics/MochiCrazy.png</File>
   </SourceFiles>
   <DestFiles>
     <File>fonts/Generic.spritefont</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -24,6 +24,8 @@ namespace BlueHeaven.src.Enums
         public static readonly int[] UpText = new int[] { 560, 375, 30, 25 };
         public static readonly int[] DownButton = new int[] { 500, 375, 50, 25 };
         public static readonly int[] DownText = new int[] { 510, 375, 30, 25 };
+        // graphic component
+        public static readonly int[] GraphicFrame = new int[] { 0, 0, 600, 400 };
         // story component
         public static readonly int[] SpeakerFrame = new int[] { 10, 410, 75, 25 };
         public static readonly int[] StoryFrame = new int[] { 0, 400, 600, 200 };

@@ -1,26 +1,33 @@
 using System.Collections.Generic;
 using BlueHeaven.src.Data;
+using BlueHeaven.src.Enums;
 namespace BlueHeaven.src.Data.Story
 {
     // data: conversation line
     public class ConversationLine : IConversationLine
     {
+        private BackgroundCode _bg;
+        private StoryGraphicCode _graphic;
         private bool _isfinished;
         private int _count;
-        private string _name, _speaker;
+        private string _speaker;
         private List<string> _sentences;
-        public ConversationLine(string speaker, List<string> sentences, string name = "Line Nth")
+        public ConversationLine(
+            string speaker, 
+            List<string> sentences, 
+            StoryGraphicCode code = StoryGraphicCode.Default,
+            BackgroundCode bg = BackgroundCode.Default)
         {
-            _name = name;
+            _graphic = code;
+            _bg = bg;
             _speaker = speaker;
             _sentences = sentences;
             _count = 0;
             _isfinished = false;
         }
-        public bool IsCalled(string name)
-        {
-            return name.Trim() == _name.Trim();
-        }
+
+        public BackgroundCode Background { get => _bg; }
+        public StoryGraphicCode GraphicCode { get => _graphic; }
         public string Speaker { get => _speaker; }
         public string Sentence
         {

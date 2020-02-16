@@ -87,5 +87,7 @@ namespace BlueHeaven.src.Components.Story
         }
         
         public bool Choosing { get; set; }
+
+        public IConversationLine CurrentLine { get => _updater.CurrentLine; }
     }
 }

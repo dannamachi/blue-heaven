@@ -7,4 +7,6 @@
 *.exe
 *.pdb
 *.xnb
+*.mgstats
+*.mgcontent
 

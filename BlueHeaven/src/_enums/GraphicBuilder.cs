@@ -26,7 +26,8 @@ namespace BlueHeaven.src.Enums
                     { "Personality",GetGraphicForPersonality() },
                     { "Navigation",GetGraphicForNavigation() },
                     { "Title",GetGraphicForTitle() },
-                    { "Info",GetGraphicForInfo() }
+                    { "Info",GetGraphicForInfo() },
+                    { "Reset",GetGraphicForReset() }
                 };
         }
 
@@ -39,6 +40,22 @@ namespace BlueHeaven.src.Enums
         {
             if (_graphicDict.ContainsKey(componentName)) return _graphicDict[componentName];
             else return new List<IGraphicObject>();
+        }
+
+        /// <summary>
+        /// Get list of graphic for reset component
+        /// </summary>
+        /// <returns></returns>
+        private static List<IGraphicObject> GetGraphicForReset()
+        {
+            List<IGraphicObject> graphics = new List<IGraphicObject>();
+            graphics.Add(new GraphicObject("ResetFrame",
+                new GraphicRectangle(_graphics, GraphicDimension.ResetFrame, Color.Black),
+                null));
+            graphics.Add(new GraphicObject("ResetButton",
+                new GraphicRectangle(_graphics, GraphicDimension.ResetButton, Color.Red),
+                new GraphicRectangle(_graphics, GraphicDimension.ResetButton, Color.Gray)));
+            return graphics;
         }
 
         /// <summary>

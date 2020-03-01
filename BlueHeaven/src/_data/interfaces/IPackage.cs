@@ -8,6 +8,7 @@ namespace BlueHeaven.src.Data.Package
     /// </summary>
     public enum PackageCode
     {
+        None,
         Test
     }
 

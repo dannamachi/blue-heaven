@@ -8,6 +8,7 @@ using BlueHeaven.src.Components.Credits;
 using BlueHeaven.src.Components.Personality;
 using BlueHeaven.src.Components.Graphic;
 using BlueHeaven.src.Components.Reset;
+using BlueHeaven.src.Components.Reload;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Data.Package;
 using BlueHeaven.src.Graphic;
@@ -21,6 +22,7 @@ namespace BlueHeaven.src.Components
 {
     // delegate for reset
     public delegate void VoidFunctionPointer();
+    public delegate void VoidFunctionCodeParamPointer(PackageCode param);
     // root component
     public class RootComponent : IComponentMaster
     {
@@ -36,12 +38,14 @@ namespace BlueHeaven.src.Components
         private GraphicsDevice _gp;
         private SpriteBatch _sb;
         private VoidFunctionPointer _resetPointer;
+        private VoidFunctionCodeParamPointer _reloadPointer;
         public RootComponent(GraphicsDevice graphics, SpriteBatch sbatch)
         {
             _gp = graphics;
             _sb = sbatch;
 
             _resetPointer = new VoidFunctionPointer(Reset);
+            _reloadPointer = new VoidFunctionCodeParamPointer(Reload);
             // current package set to Test
             _currPackage = PackageCode.Test;
 
@@ -55,6 +59,12 @@ namespace BlueHeaven.src.Components
         public bool HasEnded
         {
             get => _gameState.Finished;
+        }
+
+        private void Reload(PackageCode newPack)
+        {
+            _currPackage = newPack;
+            Reset();
         }
 
         private void Reset()
@@ -83,6 +93,7 @@ namespace BlueHeaven.src.Components
             _components.Add(new PersonalityComponent(GraphicBuilder.GetGraphics("Personality"), sbatch));
             _components.Add(new GraphicComponent(sbatch));
             _components.Add(new ResetComponent(GraphicBuilder.GetGraphics("Reset"), sbatch, _resetPointer));
+            _components.Add(new ReloadComponent(GraphicBuilder.GetGraphics("Reload"), sbatch, _reloadPointer));
             // initial active status
             foreach (IGameComponent component in _components)
             {
@@ -95,6 +106,7 @@ namespace BlueHeaven.src.Components
                 if (component is PersonalityComponent) component.IsActive = false;
                 if (component is GraphicComponent) component.IsActive = true;
                 if (component is ResetComponent) component.IsActive = false;
+                if (component is ReloadComponent) component.IsActive = false;
             }
         }
 

@@ -10,6 +10,11 @@ namespace BlueHeaven.src.Enums
     /// </summary>
     public class PackageBuilder
     {
+        private static Dictionary<string, PackageCode> _codeDict = new Dictionary<string, PackageCode>
+        {
+            { "GT01", PackageCode.Test }
+        };
+
         private static List<IPackage> _packages = new List<IPackage>
         {
             #region Test Package
@@ -37,6 +42,12 @@ namespace BlueHeaven.src.Enums
                 })
             #endregion
         };
+
+        public static PackageCode GetCode(string validString)
+        {
+            if (_codeDict.ContainsKey(validString)) return _codeDict[validString];
+            else return PackageCode.None;
+        }
 
         /// <summary>
         /// Load GameState data based on PackageCode

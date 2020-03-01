@@ -28,7 +28,7 @@ namespace BlueHeaven.src.Components.Reset
                 "Reset?",
                 FontEnum.Font20,
                 CommonUtilities.GetPositionFromInt(GraphicDimension.ResetText),
-                Color.Black,
+                Color.White,
                 _sbatch);
         }
     }

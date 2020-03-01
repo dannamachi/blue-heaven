@@ -69,6 +69,10 @@
     <Compile Include="src\_components\implementations\Personality\PersonalityProcessor.cs" />
     <Compile Include="src\_components\implementations\Personality\PersonalityRenderer.cs" />
     <Compile Include="src\_components\implementations\Personality\PersonalityUpdater.cs" />
+    <Compile Include="src\_components\implementations\Reload\ReloadComponent.cs" />
+    <Compile Include="src\_components\implementations\Reload\ReloadProcessor.cs" />
+    <Compile Include="src\_components\implementations\Reload\ReloadRenderer.cs" />
+    <Compile Include="src\_components\implementations\Reload\ReloadUpdater.cs" />
     <Compile Include="src\_components\implementations\Reset\ResetComponent.cs" />
     <Compile Include="src\_components\implementations\Reset\ResetProcessor.cs" />
     <Compile Include="src\_components\implementations\Reset\ResetRenderer.cs" />
@@ -136,6 +140,7 @@
     <Compile Include="src\_graphic\implementations\GraphicRectangle.cs" />
     <Compile Include="src\_services\ClickDetectingService.cs" />
     <Compile Include="src\_services\InfoService.cs" />
+    <Compile Include="src\_services\TypingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -153,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\_components\implementations\Alert\" />
-    <Folder Include="src\_components\implementations\Reload\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

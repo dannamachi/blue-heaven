@@ -27,7 +27,8 @@ namespace BlueHeaven.src.Enums
                     { "Navigation",GetGraphicForNavigation() },
                     { "Title",GetGraphicForTitle() },
                     { "Info",GetGraphicForInfo() },
-                    { "Reset",GetGraphicForReset() }
+                    { "Reset",GetGraphicForReset() },
+                    { "Reload",GetGraphicForReload() }
                 };
         }
 
@@ -40,6 +41,25 @@ namespace BlueHeaven.src.Enums
         {
             if (_graphicDict.ContainsKey(componentName)) return _graphicDict[componentName];
             else return new List<IGraphicObject>();
+        }
+
+        /// <summary>
+        /// Get list of graphic for reload component
+        /// </summary>
+        /// <returns></returns>
+        private static List<IGraphicObject> GetGraphicForReload()
+        {
+            List<IGraphicObject> graphics = new List<IGraphicObject>();
+            graphics.Add(new GraphicObject("ReloadBackground",
+                new GraphicRectangle(_graphics, GraphicDimension.ReloadBackground, Color.Black),
+                null));
+            graphics.Add(new GraphicObject("ReloadBox",
+                new GraphicRectangle(_graphics, GraphicDimension.ReloadBox, Color.DarkBlue),
+                null));
+            graphics.Add(new GraphicObject("ReloadButton",
+                new GraphicRectangle(_graphics, GraphicDimension.ReloadButton, Color.Purple),
+                null));
+            return graphics;
         }
 
         /// <summary>

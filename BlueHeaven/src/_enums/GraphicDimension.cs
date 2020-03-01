@@ -55,7 +55,9 @@ namespace BlueHeaven.src.Enums
         public static readonly int[] ToggleButton3 = new int[] { 125, 325, 200, 50 };
         public static readonly int[] ToggleButton4 = new int[] { 125, 425, 200, 50 };
         // reset component
-        public static readonly int[] ResetFrame = new int[] { 400, 50, 350, 500 };
+        public static readonly int[] ResetFrame = new int[] { 400, 50, 200, 500 };
+        public static readonly int[] ResetText = new int[] { 450, 150, 100, 50 };
+        public static readonly int[] ResetButton = new int[] { 450, 300, 100, 100 };
         // reload component
     }
 }

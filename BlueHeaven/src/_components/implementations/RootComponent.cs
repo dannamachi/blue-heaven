@@ -7,6 +7,7 @@ using BlueHeaven.src.Components.Help;
 using BlueHeaven.src.Components.Credits;
 using BlueHeaven.src.Components.Personality;
 using BlueHeaven.src.Components.Graphic;
+using BlueHeaven.src.Components.Reset;
 using BlueHeaven.src.Data;
 using BlueHeaven.src.Data.Package;
 using BlueHeaven.src.Graphic;
@@ -18,6 +19,8 @@ using Microsoft.Xna.Framework.Graphics;
 /// </summary>
 namespace BlueHeaven.src.Components
 {
+    // delegate for reset
+    public delegate void VoidFunctionPointer();
     // root component
     public class RootComponent : IComponentMaster
     {
@@ -27,18 +30,41 @@ namespace BlueHeaven.src.Components
         private RootRenderer _renderer;
         private IGameState _gameState;
         private IRoute _router;
+
+        private PackageCode _currPackage;
+
+        private GraphicsDevice _gp;
+        private SpriteBatch _sb;
+        private VoidFunctionPointer _resetPointer;
         public RootComponent(GraphicsDevice graphics, SpriteBatch sbatch)
         {
+            _gp = graphics;
+            _sb = sbatch;
+
+            _resetPointer = new VoidFunctionPointer(Reset);
+            // current package set to Test
+            _currPackage = PackageCode.Test;
+
             _router = new GameRouter();
             _processor = new RootProcessor();
             _updater = new RootUpdater(_router);
             _renderer = new RootRenderer();
-            LoadComponents(graphics, sbatch);
+            LoadComponents(_gp, _sb);
             LoadGame();
         }
         public bool HasEnded
         {
             get => _gameState.Finished;
+        }
+
+        private void Reset()
+        {
+            _router = new GameRouter();
+            _processor = new RootProcessor();
+            _updater = new RootUpdater(_router);
+            _renderer = new RootRenderer();
+            LoadComponents(_gp, _sb);
+            LoadGame();
         }
 
         /// <summary>
@@ -56,6 +82,7 @@ namespace BlueHeaven.src.Components
             _components.Add(new CreditsComponent(GraphicBuilder.GetGraphics("Info"), sbatch));
             _components.Add(new PersonalityComponent(GraphicBuilder.GetGraphics("Personality"), sbatch));
             _components.Add(new GraphicComponent(sbatch));
+            _components.Add(new ResetComponent(GraphicBuilder.GetGraphics("Reset"), sbatch, _resetPointer));
             // initial active status
             foreach (IGameComponent component in _components)
             {
@@ -67,6 +94,7 @@ namespace BlueHeaven.src.Components
                 if (component is CreditsComponent) component.IsActive = false;
                 if (component is PersonalityComponent) component.IsActive = false;
                 if (component is GraphicComponent) component.IsActive = true;
+                if (component is ResetComponent) component.IsActive = false;
             }
         }
 
@@ -75,11 +103,9 @@ namespace BlueHeaven.src.Components
         /// </summary>
         private void LoadGame()
         {
-            // current package set to Test
-            PackageCode currPackage = PackageCode.Test;
             // add package loader
             _gameState = new GameState();
-            PackageBuilder.LoadPackage(_gameState, currPackage);
+            PackageBuilder.LoadPackage(_gameState, _currPackage);
             // set up all initial active
             // load component specific package data
             foreach (IGameComponent component in _components)
@@ -87,7 +113,7 @@ namespace BlueHeaven.src.Components
                 if (component.IsActive) component.Setup(_gameState);
                 if (component is StoryComponent)
                 {
-                    PackageBuilder.LoadConversation(component as StoryComponent, currPackage);
+                    PackageBuilder.LoadConversation(component as StoryComponent, _currPackage);
                 }
             }
         }

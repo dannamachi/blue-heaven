@@ -36,6 +36,7 @@ namespace BlueHeaven.src.Components.Reload
             }
             _renderer.CurrentString = _processor.CurrentString;
             _renderer.Invalid = _processor.Invalid;
+            _renderer.NoExist = _processor.NoExist;
         }
 
         public void Update(IGameState gameState)

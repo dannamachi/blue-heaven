@@ -19,6 +19,7 @@ namespace BlueHeaven.src.Components.Reload
             _objects = objects;
             CurrentString = "";
             Invalid = false;
+            NoExist = false;
         }
         
         public void Draw(IGameState gameState)
@@ -56,9 +57,20 @@ namespace BlueHeaven.src.Components.Reload
                     Color.White,
                     _sbatch);
             }
+
+            if (NoExist)
+            {
+                CommonUtilities.DrawFont(
+                    "That product does not exist",
+                    FontEnum.Font20,
+                    CommonUtilities.GetPositionFromInt(GraphicDimension.ReloadValidation),
+                    Color.White,
+                    _sbatch);
+            }
         }
 
         public string CurrentString { get; set; }
         public bool Invalid { get; set; }
+        public bool NoExist { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace BlueHeaven.src.Services
             _regex = new Regex(regex);
             _limit = limit;
             _savedValid = true;
+            IsPressed = false;
         }
 
         /// <summary>
@@ -105,15 +106,18 @@ namespace BlueHeaven.src.Services
                         if (_current.Length > 0)
                             _current = _current.Remove(_current.Length - 1, 1);
                     }
-                    else if (FilterInput(key))
+                    else if (FilterInput(key) && _current.Length <= _limit)
                         _current += GetString(key);
                 }
             }
 
-            if (pressedKeys.Length != 0) IsValidInput();
+            IsPressed = pressedKeys.Length != 0;
+
+            if (IsPressed) IsValidInput();
             return _savedValid;
         }
 
+        public bool IsPressed { get; set; }
         public string GetCurrent { get => _current; }
     }
 }

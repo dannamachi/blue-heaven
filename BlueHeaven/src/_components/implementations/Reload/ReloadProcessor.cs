@@ -17,6 +17,7 @@ namespace BlueHeaven.src.Components.Reload
             Code = PackageCode.None;
             Invalid = false;
             IsClicked = false;
+            NoExist = false;
         }
         public void RefreshService()
         {
@@ -31,14 +32,21 @@ namespace BlueHeaven.src.Components.Reload
             if (!Invalid) Code = PackageBuilder.GetCode(_typing.GetCurrent);
             else Code = PackageCode.None;
 
+            if (_typing.IsPressed) NoExist = false;
+
             _clicking.SnapShot();
-            if (_clicking.IsClicked(GraphicDimension.ReloadButton)) IsClicked = true;
+            if (_clicking.IsClicked(GraphicDimension.ReloadButton) && !Invalid)
+            {
+                IsClicked = true;
+                if (Code == PackageCode.None) NoExist = true;
+            }
             else IsClicked = false;
         }
 
         public PackageCode Code { get; set; }
         public string CurrentString { get => _typing.GetCurrent; }
         public bool Invalid { get; set; }
+        public bool NoExist { get; set; }
         public bool IsClicked { get; set; }
     }
 }
